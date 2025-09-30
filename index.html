@@ -1,10 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
-  <title>Hello World</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Streaming Generation for Music Accompaniment demo page.">
+  <meta name="keywords" content="Streaming Generation, Music Accompaniment, Audio Generation">
+  <title>Streaming Generation for Music Accompaniment</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <style>
+    /* Adjust these values to tune the layout width and audio control size. */
+    .wide-container {
+      max-width: 1400px;
+    }
+
+    .listening-table audio {
+      width: 150px;
+    }
+
+    .author-name {
+      color: #1d4ed8;
+      margin: 0.1rem 0.4rem;
+      font-weight: 500;
+    }
+
+    .affiliation-block {
+      margin: 0.3rem 1rem;
+    }
+  </style>
 </head>
+
 <body>
-  hello world
+
+  <section class="hero publication-header">
+    <div class="hero-body">
+      <div class="container wide-container">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Streaming Generation for Music Accompaniment</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block author-name">Yusong Wu<sup>1</sup>,</span>
+              <span class="author-block author-name">Mason Wang<sup>2</sup>,</span>
+              <span class="author-block author-name">Heidi Lei<sup>2</sup>,</span>
+              <span class="author-block author-name">Stephen Brade<sup>2</sup>,</span>
+              <span class="author-block author-name">Lancelot Blanchard<sup>2</sup>,</span>
+              <span class="author-block author-name">Shih-Lun Wu<sup>2</sup>,</span><br>
+              <span class="author-block author-name">Aaron Courville<sup>1,3</sup>,</span>
+              <span class="author-block author-name">Anna Huang<sup>2</sup></span>
+            </div>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block affiliation-block"><sup>1</sup>Mila, Université de Montréal</span>
+              <span class="author-block affiliation-block"><sup>2</sup>MIT</span>
+              <span class="author-block affiliation-block"><sup>3</sup>Canada CIFAR AI Chair</span>
+            </div>
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="files/streamgen_appendix_0929.pdf" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                    <span>Appendix</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="." class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fab fa-github"></i></span>
+                    <span>code (coming soon)</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container wide-container">
+      <div class="content">
+        <p>
+          The table presents pairs of input examples and accompaniments for each system considered in our listening
+          study.
+        </p>
+      </div>
+      <div class="table-container listening-table">
+        <table class="table is-fullwidth is-striped is-hoverable">
+          <thead>
+            <tr>
+              <th>Example</th>
+              <th>Ground Truth</th>
+              <th>Offline StemGen</th>
+              <th>Offline Prefix Decoder</th>
+              <th>t<sub>f</sub> = 1 second</th>
+              <th>t<sub>f</sub> = 0 second</th>
+              <th>t<sub>f</sub> = -1 second</th>
+              <th>Random Pairing</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Example 1</td>
+              <td><audio controls preload="auto"
+                  src="reorganized_examples_for_listening_study/00452/ground_truth/pred.wav"></audio></td>
+              <td><audio controls preload="auto"
+                  src="reorganized_examples_for_listening_study/00452/stemgen_large_4_rvq/pred.wav"></audio></td>
+              <td><audio controls preload="auto"
+                  src="reorganized_examples_for_listening_study/00452/prefix_decoder_base/pred.wav"></audio></td>
+              <td><audio controls preload="auto"
+                  src="reorganized_examples_for_listening_study/00452/dec_online_context_50_add_changed_emb/pred.wav"></audio>
+              </td>
+              <td><audio controls preload="auto"
+                  src="reorganized_examples_for_listening_study/00452/dec_online_delay_0_add_changed_emb/pred.wav"></audio>
+              </td>
+              <td><audio controls preload="auto"
+                  src="reorganized_examples_for_listening_study/00452/dec_online_delay_50_add_changed_emb/pred.wav"></audio>
+              </td>
+              <td><audio controls preload="auto"
+                  src="reorganized_examples_for_listening_study/00452/random_anchor/pred.wav"></audio></td>
+            </tr>
+            <tr>
+              <td>Example 2</td>
+              <td><audio controls preload="auto"
+                  src="reorganized_examples_for_listening_study/00464/ground_truth/pred.wav"></audio></td>
+              <td><audio controls preload="auto"
+                  src="reorganized_examples_for_listening_study/00464/stemgen_large_4_rvq/pred.wav"></audio></td>
+              <td><audio controls preload="auto"
+                  src="reorganized_examples_for_listening_study/00464/prefix_decoder_base/pred.wav"></audio></td>
+              <td><audio controls preload="auto"
+                  src="reorganized_examples_for_listening_study/00464/dec_online_context_50_add_changed_emb/pred.wav"></audio>
+              </td>
+              <td><audio controls preload="auto"
+                  src="reorganized_examples_for_listening_study/00464/dec_online_delay_0_add_changed_emb/pred.wav"></audio>
+              </td>
+              <td><audio controls preload="auto"
+                  src="reorganized_examples_for_listening_study/00464/dec_online_delay_50_add_changed_emb/pred.wav"></audio>
+              </td>
+              <td><audio controls preload="auto"
+                  src="reorganized_examples_for_listening_study/00464/random_anchor/pred.wav"></audio></td>
+            </tr>
+            <tr>
+              <td>Example 3</td>
+              <td><audio controls preload="auto"
+                  src="reorganized_examples_for_listening_study/00269/ground_truth/pred.wav"></audio></td>
+              <td><audio controls preload="auto"
+                  src="reorganized_examples_for_listening_study/00269/stemgen_large_4_rvq/pred.wav"></audio></td>
+              <td><audio controls preload="auto"
+                  src="reorganized_examples_for_listening_study/00269/prefix_decoder_base/pred.wav"></audio></td>
+              <td><audio controls preload="auto"
+                  src="reorganized_examples_for_listening_study/00269/dec_online_context_50_add_changed_emb/pred.wav"></audio>
+              </td>
+              <td><audio controls preload="auto"
+                  src="reorganized_examples_for_listening_study/00269/dec_online_delay_0_add_changed_emb/pred.wav"></audio>
+              </td>
+              <td><audio controls preload="auto"
+                  src="reorganized_examples_for_listening_study/00269/dec_online_delay_50_add_changed_emb/pred.wav"></audio>
+              </td>
+              <td><audio controls preload="auto"
+                  src="reorganized_examples_for_listening_study/00269/random_anchor/pred.wav"></audio></td>
+            </tr>
+            <tr>
+              <td>Example 4</td>
+              <td><audio controls preload="auto"
+                  src="reorganized_examples_for_listening_study/00453/ground_truth/pred.wav"></audio></td>
+              <td><audio controls preload="auto"
+                  src="reorganized_examples_for_listening_study/00453/stemgen_large_4_rvq/pred.wav"></audio></td>
+              <td><audio controls preload="auto"
+                  src="reorganized_examples_for_listening_study/00453/prefix_decoder_base/pred.wav"></audio></td>
+              <td><audio controls preload="auto"
+                  src="reorganized_examples_for_listening_study/00453/dec_online_context_50_add_changed_emb/pred.wav"></audio>
+              </td>
+              <td><audio controls preload="auto"
+                  src="reorganized_examples_for_listening_study/00453/dec_online_delay_0_add_changed_emb/pred.wav"></audio>
+              </td>
+              <td><audio controls preload="auto"
+                  src="reorganized_examples_for_listening_study/00453/dec_online_delay_50_add_changed_emb/pred.wav"></audio>
+              </td>
+              <td><audio controls preload="auto"
+                  src="reorganized_examples_for_listening_study/00453/random_anchor/pred.wav"></audio></td>
+            </tr>
+            <tr>
+              <td>Example 5</td>
+              <td><audio controls preload="auto"
+                  src="reorganized_examples_for_listening_study/00267/ground_truth/pred.wav"></audio></td>
+              <td><audio controls preload="auto"
+                  src="reorganized_examples_for_listening_study/00267/stemgen_large_4_rvq/pred.wav"></audio></td>
+              <td><audio controls preload="auto"
+                  src="reorganized_examples_for_listening_study/00267/prefix_decoder_base/pred.wav"></audio></td>
+              <td><audio controls preload="auto"
+                  src="reorganized_examples_for_listening_study/00267/dec_online_context_50_add_changed_emb/pred.wav"></audio>
+              </td>
+              <td><audio controls preload="auto"
+                  src="reorganized_examples_for_listening_study/00267/dec_online_delay_0_add_changed_emb/pred.wav"></audio>
+              </td>
+              <td><audio controls preload="auto"
+                  src="reorganized_examples_for_listening_study/00267/dec_online_delay_50_add_changed_emb/pred.wav"></audio>
+              </td>
+              <td><audio controls preload="auto"
+                  src="reorganized_examples_for_listening_study/00267/random_anchor/pred.wav"></audio></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>This page adapts the <a href="https://github.com/nerfies/nerfies.github.io">Nerfies project template</a>, which
+        is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
+          Attribution-ShareAlike 4.0 International License</a>.</p>
+    </div>
+  </footer>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
 </body>
+
 </html>
