@@ -34,6 +34,55 @@
     .affiliation-block {
       margin: 0.3rem 1rem;
     }
+
+    .example-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .example-title {
+      font-weight: 600;
+      margin-right: 1rem;
+    }
+
+    .example-track-label {
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .example-row {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .example-cell {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .model-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #1f2937;
+    }
+
+    .audio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .audio-label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #4b5563;
+    }
   </style>
 </head>
 
@@ -86,124 +135,527 @@
     <div class="container wide-container">
       <div class="content">
         <p>
-          The table presents pairs of input examples and accompaniments for each system considered in our listening
-          study.
+          Each example row shares the same vocal input used in the listening study. For every system we provide the
+          rendered mix (input plus accompaniment) and the standalone generated accompaniment.
         </p>
       </div>
       <div class="table-container listening-table">
         <table class="table is-fullwidth is-striped is-hoverable">
-          <thead>
-            <tr>
-              <th>Example</th>
-              <th>Ground Truth</th>
-              <th>Offline StemGen</th>
-              <th>Offline Prefix Decoder</th>
-              <th>t<sub>f</sub> = 1 second</th>
-              <th>t<sub>f</sub> = 0 second</th>
-              <th>t<sub>f</sub> = -1 second</th>
-              <th>Random Pairing</th>
-            </tr>
-          </thead>
           <tbody>
             <tr>
-              <td>Example 1</td>
-              <td><audio controls preload="auto"
-                  src="reorganized_examples_for_listening_study/00452/ground_truth/pred.wav"></audio></td>
-              <td><audio controls preload="auto"
-                  src="reorganized_examples_for_listening_study/00452/stemgen_large_4_rvq/pred.wav"></audio></td>
-              <td><audio controls preload="auto"
-                  src="reorganized_examples_for_listening_study/00452/prefix_decoder_base/pred.wav"></audio></td>
-              <td><audio controls preload="auto"
-                  src="reorganized_examples_for_listening_study/00452/dec_online_context_50_add_changed_emb/pred.wav"></audio>
+              <td>
+                <div class="example-header">
+                  <span class="example-title">Example 1</span>
+                  <span class="example-track-label">Input</span>
+                  <audio controls preload="auto"
+                    src="reorganized_examples_for_listening_study/00452/input_audio.wav"></audio>
+                </div>
+                <div class="example-row">
+                  <div class="example-cell">
+                    <span class="model-label">Ground Truth</span>
+                    <div class="audio-group">
+                      <span class="audio-label">Mix</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00452/ground_truth/mix.wav"></audio>
+                    </div>
+                    <div class="audio-group">
+                      <span class="audio-label">Accompaniment</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00452/ground_truth/pred.wav"></audio>
+                    </div>
+                  </div>
+                  <div class="example-cell">
+                    <span class="model-label">Offline StemGen</span>
+                    <div class="audio-group">
+                      <span class="audio-label">Mix</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00452/stemgen_large_4_rvq/mix.wav"></audio>
+                    </div>
+                    <div class="audio-group">
+                      <span class="audio-label">Accompaniment</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00452/stemgen_large_4_rvq/pred.wav"></audio>
+                    </div>
+                  </div>
+                  <div class="example-cell">
+                    <span class="model-label">Offline Prefix Decoder</span>
+                    <div class="audio-group">
+                      <span class="audio-label">Mix</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00452/prefix_decoder_base/mix.wav"></audio>
+                    </div>
+                    <div class="audio-group">
+                      <span class="audio-label">Accompaniment</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00452/prefix_decoder_base/pred.wav"></audio>
+                    </div>
+                  </div>
+                  <div class="example-cell">
+                    <span class="model-label">t<sub>f</sub> = 1 s</span>
+                    <div class="audio-group">
+                      <span class="audio-label">Mix</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00452/dec_online_context_50_add_changed_emb/mix.wav"></audio>
+                    </div>
+                    <div class="audio-group">
+                      <span class="audio-label">Accompaniment</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00452/dec_online_context_50_add_changed_emb/pred.wav"></audio>
+                    </div>
+                  </div>
+                  <div class="example-cell">
+                    <span class="model-label">t<sub>f</sub> = 0 s</span>
+                    <div class="audio-group">
+                      <span class="audio-label">Mix</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00452/dec_online_delay_0_add_changed_emb/mix.wav"></audio>
+                    </div>
+                    <div class="audio-group">
+                      <span class="audio-label">Accompaniment</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00452/dec_online_delay_0_add_changed_emb/pred.wav"></audio>
+                    </div>
+                  </div>
+                  <div class="example-cell">
+                    <span class="model-label">t<sub>f</sub> = -1 s</span>
+                    <div class="audio-group">
+                      <span class="audio-label">Mix</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00452/dec_online_delay_50_add_changed_emb/mix.wav"></audio>
+                    </div>
+                    <div class="audio-group">
+                      <span class="audio-label">Accompaniment</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00452/dec_online_delay_50_add_changed_emb/pred.wav"></audio>
+                    </div>
+                  </div>
+                  <div class="example-cell">
+                    <span class="model-label">Random Pairing</span>
+                    <div class="audio-group">
+                      <span class="audio-label">Mix</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00452/random_anchor/mix.wav"></audio>
+                    </div>
+                    <div class="audio-group">
+                      <span class="audio-label">Accompaniment</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00452/random_anchor/pred.wav"></audio>
+                    </div>
+                  </div>
+                </div>
               </td>
-              <td><audio controls preload="auto"
-                  src="reorganized_examples_for_listening_study/00452/dec_online_delay_0_add_changed_emb/pred.wav"></audio>
-              </td>
-              <td><audio controls preload="auto"
-                  src="reorganized_examples_for_listening_study/00452/dec_online_delay_50_add_changed_emb/pred.wav"></audio>
-              </td>
-              <td><audio controls preload="auto"
-                  src="reorganized_examples_for_listening_study/00452/random_anchor/pred.wav"></audio></td>
             </tr>
             <tr>
-              <td>Example 2</td>
-              <td><audio controls preload="auto"
-                  src="reorganized_examples_for_listening_study/00464/ground_truth/pred.wav"></audio></td>
-              <td><audio controls preload="auto"
-                  src="reorganized_examples_for_listening_study/00464/stemgen_large_4_rvq/pred.wav"></audio></td>
-              <td><audio controls preload="auto"
-                  src="reorganized_examples_for_listening_study/00464/prefix_decoder_base/pred.wav"></audio></td>
-              <td><audio controls preload="auto"
-                  src="reorganized_examples_for_listening_study/00464/dec_online_context_50_add_changed_emb/pred.wav"></audio>
+              <td>
+                <div class="example-header">
+                  <span class="example-title">Example 2</span>
+                  <span class="example-track-label">Input</span>
+                  <audio controls preload="auto"
+                    src="reorganized_examples_for_listening_study/00464/input_audio.wav"></audio>
+                </div>
+                <div class="example-row">
+                  <div class="example-cell">
+                    <span class="model-label">Ground Truth</span>
+                    <div class="audio-group">
+                      <span class="audio-label">Mix</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00464/ground_truth/mix.wav"></audio>
+                    </div>
+                    <div class="audio-group">
+                      <span class="audio-label">Accompaniment</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00464/ground_truth/pred.wav"></audio>
+                    </div>
+                  </div>
+                  <div class="example-cell">
+                    <span class="model-label">Offline StemGen</span>
+                    <div class="audio-group">
+                      <span class="audio-label">Mix</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00464/stemgen_large_4_rvq/mix.wav"></audio>
+                    </div>
+                    <div class="audio-group">
+                      <span class="audio-label">Accompaniment</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00464/stemgen_large_4_rvq/pred.wav"></audio>
+                    </div>
+                  </div>
+                  <div class="example-cell">
+                    <span class="model-label">Offline Prefix Decoder</span>
+                    <div class="audio-group">
+                      <span class="audio-label">Mix</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00464/prefix_decoder_base/mix.wav"></audio>
+                    </div>
+                    <div class="audio-group">
+                      <span class="audio-label">Accompaniment</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00464/prefix_decoder_base/pred.wav"></audio>
+                    </div>
+                  </div>
+                  <div class="example-cell">
+                    <span class="model-label">t<sub>f</sub> = 1 s</span>
+                    <div class="audio-group">
+                      <span class="audio-label">Mix</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00464/dec_online_context_50_add_changed_emb/mix.wav"></audio>
+                    </div>
+                    <div class="audio-group">
+                      <span class="audio-label">Accompaniment</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00464/dec_online_context_50_add_changed_emb/pred.wav"></audio>
+                    </div>
+                  </div>
+                  <div class="example-cell">
+                    <span class="model-label">t<sub>f</sub> = 0 s</span>
+                    <div class="audio-group">
+                      <span class="audio-label">Mix</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00464/dec_online_delay_0_add_changed_emb/mix.wav"></audio>
+                    </div>
+                    <div class="audio-group">
+                      <span class="audio-label">Accompaniment</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00464/dec_online_delay_0_add_changed_emb/pred.wav"></audio>
+                    </div>
+                  </div>
+                  <div class="example-cell">
+                    <span class="model-label">t<sub>f</sub> = -1 s</span>
+                    <div class="audio-group">
+                      <span class="audio-label">Mix</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00464/dec_online_delay_50_add_changed_emb/mix.wav"></audio>
+                    </div>
+                    <div class="audio-group">
+                      <span class="audio-label">Accompaniment</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00464/dec_online_delay_50_add_changed_emb/pred.wav"></audio>
+                    </div>
+                  </div>
+                  <div class="example-cell">
+                    <span class="model-label">Random Pairing</span>
+                    <div class="audio-group">
+                      <span class="audio-label">Mix</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00464/random_anchor/mix.wav"></audio>
+                    </div>
+                    <div class="audio-group">
+                      <span class="audio-label">Accompaniment</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00464/random_anchor/pred.wav"></audio>
+                    </div>
+                  </div>
+                </div>
               </td>
-              <td><audio controls preload="auto"
-                  src="reorganized_examples_for_listening_study/00464/dec_online_delay_0_add_changed_emb/pred.wav"></audio>
-              </td>
-              <td><audio controls preload="auto"
-                  src="reorganized_examples_for_listening_study/00464/dec_online_delay_50_add_changed_emb/pred.wav"></audio>
-              </td>
-              <td><audio controls preload="auto"
-                  src="reorganized_examples_for_listening_study/00464/random_anchor/pred.wav"></audio></td>
             </tr>
             <tr>
-              <td>Example 3</td>
-              <td><audio controls preload="auto"
-                  src="reorganized_examples_for_listening_study/00269/ground_truth/pred.wav"></audio></td>
-              <td><audio controls preload="auto"
-                  src="reorganized_examples_for_listening_study/00269/stemgen_large_4_rvq/pred.wav"></audio></td>
-              <td><audio controls preload="auto"
-                  src="reorganized_examples_for_listening_study/00269/prefix_decoder_base/pred.wav"></audio></td>
-              <td><audio controls preload="auto"
-                  src="reorganized_examples_for_listening_study/00269/dec_online_context_50_add_changed_emb/pred.wav"></audio>
+              <td>
+                <div class="example-header">
+                  <span class="example-title">Example 3</span>
+                  <span class="example-track-label">Input</span>
+                  <audio controls preload="auto"
+                    src="reorganized_examples_for_listening_study/00269/input_audio.wav"></audio>
+                </div>
+                <div class="example-row">
+                  <div class="example-cell">
+                    <span class="model-label">Ground Truth</span>
+                    <div class="audio-group">
+                      <span class="audio-label">Mix</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00269/ground_truth/mix.wav"></audio>
+                    </div>
+                    <div class="audio-group">
+                      <span class="audio-label">Accompaniment</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00269/ground_truth/pred.wav"></audio>
+                    </div>
+                  </div>
+                  <div class="example-cell">
+                    <span class="model-label">Offline StemGen</span>
+                    <div class="audio-group">
+                      <span class="audio-label">Mix</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00269/stemgen_large_4_rvq/mix.wav"></audio>
+                    </div>
+                    <div class="audio-group">
+                      <span class="audio-label">Accompaniment</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00269/stemgen_large_4_rvq/pred.wav"></audio>
+                    </div>
+                  </div>
+                  <div class="example-cell">
+                    <span class="model-label">Offline Prefix Decoder</span>
+                    <div class="audio-group">
+                      <span class="audio-label">Mix</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00269/prefix_decoder_base/mix.wav"></audio>
+                    </div>
+                    <div class="audio-group">
+                      <span class="audio-label">Accompaniment</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00269/prefix_decoder_base/pred.wav"></audio>
+                    </div>
+                  </div>
+                  <div class="example-cell">
+                    <span class="model-label">t<sub>f</sub> = 1 s</span>
+                    <div class="audio-group">
+                      <span class="audio-label">Mix</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00269/dec_online_context_50_add_changed_emb/mix.wav"></audio>
+                    </div>
+                    <div class="audio-group">
+                      <span class="audio-label">Accompaniment</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00269/dec_online_context_50_add_changed_emb/pred.wav"></audio>
+                    </div>
+                  </div>
+                  <div class="example-cell">
+                    <span class="model-label">t<sub>f</sub> = 0 s</span>
+                    <div class="audio-group">
+                      <span class="audio-label">Mix</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00269/dec_online_delay_0_add_changed_emb/mix.wav"></audio>
+                    </div>
+                    <div class="audio-group">
+                      <span class="audio-label">Accompaniment</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00269/dec_online_delay_0_add_changed_emb/pred.wav"></audio>
+                    </div>
+                  </div>
+                  <div class="example-cell">
+                    <span class="model-label">t<sub>f</sub> = -1 s</span>
+                    <div class="audio-group">
+                      <span class="audio-label">Mix</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00269/dec_online_delay_50_add_changed_emb/mix.wav"></audio>
+                    </div>
+                    <div class="audio-group">
+                      <span class="audio-label">Accompaniment</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00269/dec_online_delay_50_add_changed_emb/pred.wav"></audio>
+                    </div>
+                  </div>
+                  <div class="example-cell">
+                    <span class="model-label">Random Pairing</span>
+                    <div class="audio-group">
+                      <span class="audio-label">Mix</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00269/random_anchor/mix.wav"></audio>
+                    </div>
+                    <div class="audio-group">
+                      <span class="audio-label">Accompaniment</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00269/random_anchor/pred.wav"></audio>
+                    </div>
+                  </div>
+                </div>
               </td>
-              <td><audio controls preload="auto"
-                  src="reorganized_examples_for_listening_study/00269/dec_online_delay_0_add_changed_emb/pred.wav"></audio>
-              </td>
-              <td><audio controls preload="auto"
-                  src="reorganized_examples_for_listening_study/00269/dec_online_delay_50_add_changed_emb/pred.wav"></audio>
-              </td>
-              <td><audio controls preload="auto"
-                  src="reorganized_examples_for_listening_study/00269/random_anchor/pred.wav"></audio></td>
             </tr>
             <tr>
-              <td>Example 4</td>
-              <td><audio controls preload="auto"
-                  src="reorganized_examples_for_listening_study/00453/ground_truth/pred.wav"></audio></td>
-              <td><audio controls preload="auto"
-                  src="reorganized_examples_for_listening_study/00453/stemgen_large_4_rvq/pred.wav"></audio></td>
-              <td><audio controls preload="auto"
-                  src="reorganized_examples_for_listening_study/00453/prefix_decoder_base/pred.wav"></audio></td>
-              <td><audio controls preload="auto"
-                  src="reorganized_examples_for_listening_study/00453/dec_online_context_50_add_changed_emb/pred.wav"></audio>
+              <td>
+                <div class="example-header">
+                  <span class="example-title">Example 4</span>
+                  <span class="example-track-label">Input</span>
+                  <audio controls preload="auto"
+                    src="reorganized_examples_for_listening_study/00453/input_audio.wav"></audio>
+                </div>
+                <div class="example-row">
+                  <div class="example-cell">
+                    <span class="model-label">Ground Truth</span>
+                    <div class="audio-group">
+                      <span class="audio-label">Mix</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00453/ground_truth/mix.wav"></audio>
+                    </div>
+                    <div class="audio-group">
+                      <span class="audio-label">Accompaniment</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00453/ground_truth/pred.wav"></audio>
+                    </div>
+                  </div>
+                  <div class="example-cell">
+                    <span class="model-label">Offline StemGen</span>
+                    <div class="audio-group">
+                      <span class="audio-label">Mix</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00453/stemgen_large_4_rvq/mix.wav"></audio>
+                    </div>
+                    <div class="audio-group">
+                      <span class="audio-label">Accompaniment</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00453/stemgen_large_4_rvq/pred.wav"></audio>
+                    </div>
+                  </div>
+                  <div class="example-cell">
+                    <span class="model-label">Offline Prefix Decoder</span>
+                    <div class="audio-group">
+                      <span class="audio-label">Mix</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00453/prefix_decoder_base/mix.wav"></audio>
+                    </div>
+                    <div class="audio-group">
+                      <span class="audio-label">Accompaniment</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00453/prefix_decoder_base/pred.wav"></audio>
+                    </div>
+                  </div>
+                  <div class="example-cell">
+                    <span class="model-label">t<sub>f</sub> = 1 s</span>
+                    <div class="audio-group">
+                      <span class="audio-label">Mix</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00453/dec_online_context_50_add_changed_emb/mix.wav"></audio>
+                    </div>
+                    <div class="audio-group">
+                      <span class="audio-label">Accompaniment</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00453/dec_online_context_50_add_changed_emb/pred.wav"></audio>
+                    </div>
+                  </div>
+                  <div class="example-cell">
+                    <span class="model-label">t<sub>f</sub> = 0 s</span>
+                    <div class="audio-group">
+                      <span class="audio-label">Mix</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00453/dec_online_delay_0_add_changed_emb/mix.wav"></audio>
+                    </div>
+                    <div class="audio-group">
+                      <span class="audio-label">Accompaniment</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00453/dec_online_delay_0_add_changed_emb/pred.wav"></audio>
+                    </div>
+                  </div>
+                  <div class="example-cell">
+                    <span class="model-label">t<sub>f</sub> = -1 s</span>
+                    <div class="audio-group">
+                      <span class="audio-label">Mix</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00453/dec_online_delay_50_add_changed_emb/mix.wav"></audio>
+                    </div>
+                    <div class="audio-group">
+                      <span class="audio-label">Accompaniment</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00453/dec_online_delay_50_add_changed_emb/pred.wav"></audio>
+                    </div>
+                  </div>
+                  <div class="example-cell">
+                    <span class="model-label">Random Pairing</span>
+                    <div class="audio-group">
+                      <span class="audio-label">Mix</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00453/random_anchor/mix.wav"></audio>
+                    </div>
+                    <div class="audio-group">
+                      <span class="audio-label">Accompaniment</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00453/random_anchor/pred.wav"></audio>
+                    </div>
+                  </div>
+                </div>
               </td>
-              <td><audio controls preload="auto"
-                  src="reorganized_examples_for_listening_study/00453/dec_online_delay_0_add_changed_emb/pred.wav"></audio>
-              </td>
-              <td><audio controls preload="auto"
-                  src="reorganized_examples_for_listening_study/00453/dec_online_delay_50_add_changed_emb/pred.wav"></audio>
-              </td>
-              <td><audio controls preload="auto"
-                  src="reorganized_examples_for_listening_study/00453/random_anchor/pred.wav"></audio></td>
             </tr>
             <tr>
-              <td>Example 5</td>
-              <td><audio controls preload="auto"
-                  src="reorganized_examples_for_listening_study/00267/ground_truth/pred.wav"></audio></td>
-              <td><audio controls preload="auto"
-                  src="reorganized_examples_for_listening_study/00267/stemgen_large_4_rvq/pred.wav"></audio></td>
-              <td><audio controls preload="auto"
-                  src="reorganized_examples_for_listening_study/00267/prefix_decoder_base/pred.wav"></audio></td>
-              <td><audio controls preload="auto"
-                  src="reorganized_examples_for_listening_study/00267/dec_online_context_50_add_changed_emb/pred.wav"></audio>
+              <td>
+                <div class="example-header">
+                  <span class="example-title">Example 5</span>
+                  <span class="example-track-label">Input</span>
+                  <audio controls preload="auto"
+                    src="reorganized_examples_for_listening_study/00267/input_audio.wav"></audio>
+                </div>
+                <div class="example-row">
+                  <div class="example-cell">
+                    <span class="model-label">Ground Truth</span>
+                    <div class="audio-group">
+                      <span class="audio-label">Mix</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00267/ground_truth/mix.wav"></audio>
+                    </div>
+                    <div class="audio-group">
+                      <span class="audio-label">Accompaniment</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00267/ground_truth/pred.wav"></audio>
+                    </div>
+                  </div>
+                  <div class="example-cell">
+                    <span class="model-label">Offline StemGen</span>
+                    <div class="audio-group">
+                      <span class="audio-label">Mix</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00267/stemgen_large_4_rvq/mix.wav"></audio>
+                    </div>
+                    <div class="audio-group">
+                      <span class="audio-label">Accompaniment</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00267/stemgen_large_4_rvq/pred.wav"></audio>
+                    </div>
+                  </div>
+                  <div class="example-cell">
+                    <span class="model-label">Offline Prefix Decoder</span>
+                    <div class="audio-group">
+                      <span class="audio-label">Mix</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00267/prefix_decoder_base/mix.wav"></audio>
+                    </div>
+                    <div class="audio-group">
+                      <span class="audio-label">Accompaniment</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00267/prefix_decoder_base/pred.wav"></audio>
+                    </div>
+                  </div>
+                  <div class="example-cell">
+                    <span class="model-label">t<sub>f</sub> = 1 s</span>
+                    <div class="audio-group">
+                      <span class="audio-label">Mix</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00267/dec_online_context_50_add_changed_emb/mix.wav"></audio>
+                    </div>
+                    <div class="audio-group">
+                      <span class="audio-label">Accompaniment</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00267/dec_online_context_50_add_changed_emb/pred.wav"></audio>
+                    </div>
+                  </div>
+                  <div class="example-cell">
+                    <span class="model-label">t<sub>f</sub> = 0 s</span>
+                    <div class="audio-group">
+                      <span class="audio-label">Mix</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00267/dec_online_delay_0_add_changed_emb/mix.wav"></audio>
+                    </div>
+                    <div class="audio-group">
+                      <span class="audio-label">Accompaniment</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00267/dec_online_delay_0_add_changed_emb/pred.wav"></audio>
+                    </div>
+                  </div>
+                  <div class="example-cell">
+                    <span class="model-label">t<sub>f</sub> = -1 s</span>
+                    <div class="audio-group">
+                      <span class="audio-label">Mix</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00267/dec_online_delay_50_add_changed_emb/mix.wav"></audio>
+                    </div>
+                    <div class="audio-group">
+                      <span class="audio-label">Accompaniment</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00267/dec_online_delay_50_add_changed_emb/pred.wav"></audio>
+                    </div>
+                  </div>
+                  <div class="example-cell">
+                    <span class="model-label">Random Pairing</span>
+                    <div class="audio-group">
+                      <span class="audio-label">Mix</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00267/random_anchor/mix.wav"></audio>
+                    </div>
+                    <div class="audio-group">
+                      <span class="audio-label">Accompaniment</span>
+                      <audio controls preload="auto"
+                        src="reorganized_examples_for_listening_study/00267/random_anchor/pred.wav"></audio>
+                    </div>
+                  </div>
+                </div>
               </td>
-              <td><audio controls preload="auto"
-                  src="reorganized_examples_for_listening_study/00267/dec_online_delay_0_add_changed_emb/pred.wav"></audio>
-              </td>
-              <td><audio controls preload="auto"
-                  src="reorganized_examples_for_listening_study/00267/dec_online_delay_50_add_changed_emb/pred.wav"></audio>
-              </td>
-              <td><audio controls preload="auto"
-                  src="reorganized_examples_for_listening_study/00267/random_anchor/pred.wav"></audio></td>
             </tr>
           </tbody>
         </table>
