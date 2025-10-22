@@ -1,0 +1,30 @@
+{
+    "input_inst_id": [
+        6,
+        0,
+        6,
+        4,
+        0,
+        3
+    ],
+    "target_inst_id": 14,
+    "input_token_path": [
+        "/data2/online_stem_gen_data/causal_dac_codes_32khz/slakh2100/test/Track01918/stems/S07.pt",
+        "/data2/online_stem_gen_data/causal_dac_codes_32khz/slakh2100/test/Track01918/stems/S00.pt",
+        "/data2/online_stem_gen_data/causal_dac_codes_32khz/slakh2100/test/Track01918/stems/S04.pt",
+        "/data2/online_stem_gen_data/causal_dac_codes_32khz/slakh2100/test/Track01918/stems/S10.pt",
+        "/data2/online_stem_gen_data/causal_dac_codes_32khz/slakh2100/test/Track01918/stems/S05.pt",
+        "/data2/online_stem_gen_data/causal_dac_codes_32khz/slakh2100/test/Track01918/stems/S02.pt"
+    ],
+    "target_token_path": "/data2/online_stem_gen_data/causal_dac_codes_32khz/slakh2100/test/Track01918/stems/S09.pt",
+    "input_audio_path": [
+        "/data2/online_stem_gen_data/slakh2100/original/slakh2100_redux_16k/test/Track01918/stems/S07.flac",
+        "/data2/online_stem_gen_data/slakh2100/original/slakh2100_redux_16k/test/Track01918/stems/S00.flac",
+        "/data2/online_stem_gen_data/slakh2100/original/slakh2100_redux_16k/test/Track01918/stems/S04.flac",
+        "/data2/online_stem_gen_data/slakh2100/original/slakh2100_redux_16k/test/Track01918/stems/S10.flac",
+        "/data2/online_stem_gen_data/slakh2100/original/slakh2100_redux_16k/test/Track01918/stems/S05.flac",
+        "/data2/online_stem_gen_data/slakh2100/original/slakh2100_redux_16k/test/Track01918/stems/S02.flac"
+    ],
+    "target_audio_path": "/data2/online_stem_gen_data/slakh2100/original/slakh2100_redux_16k/test/Track01918/stems/S09.flac",
+    "num_input_stems": 6
+}
