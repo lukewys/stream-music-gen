@@ -1,0 +1,15 @@
+$include:
+  - configs/multiout/prefix_decoder_base.yml
+
+devices: "auto"
+
+# Model hyperparameters
+PrefixDecoderTransformerMultiOut.dim: 1024
+PrefixDecoderTransformerMultiOut.output_emb_dim: 1024
+PrefixDecoderTransformerMultiOut.depth: 24
+PrefixDecoderTransformerMultiOut.heads: 24
+PrefixDecoderTransformerMultiOut.attn_dropout: 0.0
+PrefixDecoderTransformerMultiOut.ff_dropout: 0.1
+PrefixDecoderTransformerMultiOut.future_visibility: 0
+PrefixDecoderTransformerMultiOut.attention_layer_configs:
+  attn_kv_heads: null

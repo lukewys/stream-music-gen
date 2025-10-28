@@ -1,0 +1,29 @@
+numpy
+torch
+torchaudio
+transformers
+x-transformers
+rotary-embedding-torch
+librosa
+matplotlib<3.10
+scipy
+tqdm
+pqdm
+pandas
+seaborn
+lightning
+wandb
+argbind
+pyloudnorm
+soxr
+pyarrow
+
+# For Shih-Lun's causal DAC tokenizer
+descript-audio-codec @ git+https://github.com/slSeanWU/descript-audio-codec.git@56d0ea29d55a9b74964c5b11f3ba1d11b53f193e#egg=descript-audio-codec
+
+# Eval
+frechet_audio_distance @ git+https://github.com/maswang32/frechet-audio-distance
+cocola @ git+https://github.com/maswang32/cocola-stem-gen.git@main#egg=cocola
+beat_transformer @ git+https://github.com/lancelotblanchard/beat-transformer-online-stem-gen.git@f9944f10ac1e3a79c117ab6f5a8f40ac7e4414e8#egg=beat_transformer
+madmom @ git+https://github.com/CPJKU/madmom.git@27f032e
+beat_this @ https://github.com/CPJKU/beat_this/archive/main.zip

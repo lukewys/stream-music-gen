@@ -1,0 +1,54 @@
+# Trainer hyperparameters, for Trainer and lit_module
+$vars:
+    total_steps: 100000
+
+seed: 42
+train_steps: $total_steps
+val_interval: 1000
+max_log_examples: 8
+overfit_batches: 0
+wandb_project: "stream-music-gen"
+log_every_n_steps: 1
+limit_val_batches: 128
+checkpoint_interval: 10000
+checkpoint_metric: "val/loss"
+checkpoint_mode: "min"
+checkpoint_top_k: -1 # save all checkpoints
+load_from_latest_checkpoint: true
+accelerator: "auto"
+devices: "auto"
+num_nodes: 1
+precision: "bf16-mixed"
+strategy: "auto"
+compile: true
+
+# Trainer hyperparameters
+sample_interval: 10000
+
+# Data hyperparameters, for get_dataloader
+batch_size: 64
+num_workers: 8
+data_base_dir: "stream_music_gen_data/precompute_audio_mixdown_20s"
+max_duration: 10 # seconds of audio to train
+dataset_names:
+  - "slakh2100"
+weights:
+  - 1
+inst_tokens_as_pattern_token: true
+
+
+# Optimizer hyperparameters
+AdamW.lr: !!float 1e-4
+
+# Scheduler hyperparameters
+LinearWarmupCosineDecay.warmup_iters: 10000
+LinearWarmupCosineDecay.total_iters: $total_steps
+LinearWarmupCosineDecay.eta_min: !!float 1e-5
+
+
+# Model hyperparameters
+DecoderTransformerMultiOut.dim: 1024
+DecoderTransformerMultiOut.output_emb_dim: 1024
+DecoderTransformerMultiOut.depth: 16
+DecoderTransformerMultiOut.heads: 16
+DecoderTransformerMultiOut.future_visibility: 0

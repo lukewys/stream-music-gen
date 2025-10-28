@@ -1,0 +1,10 @@
+$include: 
+ - configs/stemgen/stemgen_base.yml
+
+num_rvq_layers_to_use: 8
+StemGen.num_sample_steps: [128, 64, 32, 32, 16, 16, 8, 8]
+
+generate_kwargs:
+  sample_temperature: 1.0
+  noise_temperature: [8.0, 8.0, 4.0, 4.0, 2.0, 2.0, 1.0, 1.0]
+  use_temperature_annealing: true

@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stream_music_gen"
+version = "1.0.0"
+description = "Stream Music Gen"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT License"}
+authors = [
+    {name = "Yusong Wu", email = "wuyusongwys@gmail.com"},
+    {name = "Mason Wang"},
+    {name = "Heidi Lei"},
+    {name = "Lancelot Blanchard"},
+    {name = "Shih-Lun Wu"},
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+# From requirements.txt to read dynamic dependencies
+dynamic = ["dependencies"]
+
+[project.urls]
+Homepage = "https://github.com/lukewys/stream-music-gen"
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[tool.setuptools]
+packages = {find = {}}
+include-package-data = true
+

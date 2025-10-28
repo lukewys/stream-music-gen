@@ -1,0 +1,7 @@
+$include:
+  - configs/online/online_prefix_decoder/online_prefix_decoder_base.yml
+
+OnlinePrefixDecoderTransformerMultiOut.future_visibility: -100
+OnlinePrefixDecoderTransformerMultiOut.chunk_length: 100
+
+
