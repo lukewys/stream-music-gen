@@ -149,7 +149,7 @@ Use 1024 for the number of samples to compute FAD/COCOLA.
 
 ## Pretrained Checkpoints
 
-Coming soon!
+You can find pretrained checkpoints in here: https://huggingface.co/lukewys/stream_music_gen/tree/main.
 
 ## A Note on argbind
 
