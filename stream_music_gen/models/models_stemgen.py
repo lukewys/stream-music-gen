@@ -70,6 +70,7 @@ class StemGenInputEmb(nn.Module):
         num_rvq_layers: int,
         num_codebook_per_layer: int,
         num_instrument_tokens: int,
+        num_special_tokens: int = 2,
     ):
         super().__init__()
         self.model_dim = model_dim  # D
@@ -77,6 +78,7 @@ class StemGenInputEmb(nn.Module):
         self.num_rvq_layers = num_rvq_layers  # K
         self.num_codebook_per_layer = num_codebook_per_layer
         self.num_instrument_tokens = num_instrument_tokens
+        self.num_special_tokens = num_special_tokens
         self.inst_emb = nn.Embedding(num_instrument_tokens, model_dim // 2)
         self.input_fc = nn.Linear(input_dim, model_dim // 2)
 
@@ -92,7 +94,13 @@ class StemGenInputEmb(nn.Module):
             ),
             0,
         )  # [K]
-        target_token = target_token + offset.unsqueeze(0).unsqueeze(2)
+        offset = offset.unsqueeze(0).unsqueeze(2)  # [1, K, 1]
+
+        # Only apply offset to non-special tokens (>= num_special_tokens)
+        special_token_mask = target_token < self.num_special_tokens
+        target_token = torch.where(
+            special_token_mask, target_token, target_token + offset
+        )
 
         target_token_emb = self.target_token_emb(
             target_token
@@ -187,6 +195,7 @@ class StemGen(nn.Module):
             num_rvq_layers=num_rvq_layers,
             num_codebook_per_layer=num_codebook_per_layer,
             num_instrument_tokens=num_instrument_tokens,
+            num_special_tokens=num_special_tokens,
         )
         self.output_layer = StemGenOutputLayer(
             num_rvq_layers=num_rvq_layers,
