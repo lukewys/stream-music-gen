@@ -1,29 +1,33 @@
-numpy
-torch
-torchaudio
-transformers
-x-transformers
-rotary-embedding-torch
-librosa
-matplotlib<3.10
-scipy
-tqdm
-pqdm
-pandas
-seaborn
-lightning
-wandb
-argbind
-pyloudnorm
-soxr
-pyarrow
+# Direct dependencies used by training, generation, and dataset preprocessing.
+# Keep these as compatible ranges so downstream users can still develop against
+# newer patch releases. Use constraints-jamming-2026-04.txt for the tested
+# versions used locally.
+
+numpy>=1.26,<2
+torch>=2.5,<2.6
+torchaudio>=2.5,<2.6
+transformers>=4.48,<4.49
+
+# Pin x-transformers because of this regression:
+# https://github.com/lucidrains/x-transformers/issues/352
+x-transformers==2.11.23
+
+rotary-embedding-torch>=0.8,<1
+librosa>=0.10,<0.11
+matplotlib>=3.9,<3.10
+scipy>=1.14,<2
+tqdm>=4.67,<5
+pqdm>=0.2,<0.3
+pandas>=2.2,<3
+lightning>=2.4,<2.5
+wandb>=0.18,<0.19
+argbind>=0.3.9,<0.4
+ipython>=8,<9
+pyloudnorm>=0.1,<0.2
+soxr>=0.5,<1
+pyarrow>=18,<19
+soundfile>=0.12,<0.13
 
 # For Shih-Lun's causal DAC tokenizer
-descript-audio-codec @ git+https://github.com/slSeanWU/descript-audio-codec.git@56d0ea29d55a9b74964c5b11f3ba1d11b53f193e#egg=descript-audio-codec
-
-# Eval
-frechet_audio_distance @ git+https://github.com/maswang32/frechet-audio-distance
-cocola @ git+https://github.com/maswang32/cocola-stem-gen.git@main#egg=cocola
-beat_transformer @ git+https://github.com/lancelotblanchard/beat-transformer-online-stem-gen.git@f9944f10ac1e3a79c117ab6f5a8f40ac7e4414e8#egg=beat_transformer
-madmom @ git+https://github.com/CPJKU/madmom.git@27f032e
-beat_this @ https://github.com/CPJKU/beat_this/archive/main.zip
+descript-audio-codec @ git+https://github.com/slSeanWU/descript-audio-codec.git@56d0ea29d55a9b74964c5b11f3ba1d11b53f193e
+descript-audiotools @ git+https://github.com/descriptinc/audiotools@348ebf2034ce24e2a91a553e3171cb00c0c71678

@@ -22,14 +22,17 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 
-# From requirements.txt to read dynamic dependencies
-dynamic = ["dependencies"]
+# From requirements files to read dynamic dependencies
+dynamic = ["dependencies", "optional-dependencies"]
 
 [project.urls]
 Homepage = "https://github.com/lukewys/stream-music-gen"
 
 [tool.setuptools.dynamic]
 dependencies = {file = ["requirements.txt"]}
+
+[tool.setuptools.dynamic.optional-dependencies]
+eval = {file = ["requirements-eval.txt"]}
 
 [tool.setuptools]
 packages = {find = {}}

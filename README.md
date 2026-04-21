@@ -22,6 +22,25 @@ cd stream-music-gen
 pip install -e .
 ```
 
+Optional evaluation and analysis dependencies:
+
+```bash
+pip install -e ".[eval]"
+```
+
+To reproduce the tested local package versions, add the provided constraints
+file:
+
+```bash
+pip install -e . -c constraints-jamming-2026-04.txt
+pip install -e ".[eval]" -c constraints-jamming-2026-04.txt
+```
+
+The dependency files intentionally use compatible version ranges so the
+repository stays usable for downstream development. The one exception is
+`x-transformers`, which is pinned because of this known regression:
+https://github.com/lucidrains/x-transformers/issues/352
+
 ## Dataset Dump
 
 First, you need to download the DAC model weights from [this link](https://huggingface.co/lukewys/stream_music_gen/blob/main/250121_stemmix_dac_weights_400k_steps.pth) and place it in the `pretrained_models/` directory.

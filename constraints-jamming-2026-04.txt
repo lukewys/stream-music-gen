@@ -1,0 +1,34 @@
+# Tested constraints for local reproduction.
+# This is based on the local `jamming` environment, with x-transformers pinned
+# to 2.11.23 as the known-good version for this repository.
+# Use with:
+#   pip install -e . -c constraints-jamming-2026-04.txt
+#   pip install -e ".[eval]" -c constraints-jamming-2026-04.txt
+
+argbind==0.3.9
+beat-this @ https://github.com/CPJKU/beat_this/archive/main.zip#sha256=f5f0760ca33e7d612520b85aded78b245b91d7d0744bab097e721aee6ad5cf94
+beat_transformer @ git+https://github.com/lancelotblanchard/beat-transformer-online-stem-gen.git@f9944f10ac1e3a79c117ab6f5a8f40ac7e4414e8
+cocola @ git+https://github.com/maswang32/cocola-stem-gen.git@6ada048f604624215d2a1612447852a7fc7a45a1
+descript-audio-codec @ git+https://github.com/slSeanWU/descript-audio-codec.git@56d0ea29d55a9b74964c5b11f3ba1d11b53f193e
+descript-audiotools @ git+https://github.com/descriptinc/audiotools@348ebf2034ce24e2a91a553e3171cb00c0c71678
+frechet_audio_distance @ git+https://github.com/maswang32/frechet-audio-distance@25f82b36c7179d92ebb908609dc48c6740b406b7
+ipython==8.25.0
+librosa==0.10.2.post1
+lightning==2.4.0
+madmom @ git+https://github.com/CPJKU/madmom@27f032e8947204902c675e5e341a3faf5dc86dae
+matplotlib==3.9.2
+numpy==1.26.4
+pandas==2.2.3
+pqdm==0.2.0
+pyarrow==18.0.0
+pyloudnorm==0.1.1
+rotary-embedding-torch==0.8.6
+soundfile==0.12.1
+soxr==0.5.0.post1
+tokenizers==0.21.1
+torch==2.5.1
+torchaudio==2.5.1
+tqdm==4.67.1
+transformers==4.48.3
+wandb==0.18.5
+x-transformers==2.11.23
