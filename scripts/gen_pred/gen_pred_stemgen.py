@@ -147,7 +147,7 @@ def main(
     num_samples: int = 1000,
     model_name: str = "stemgen_base",
     gen_kwargs: dict = {},
-    seed: Optional[int] = None,
+    seed: int = 42,
     split: str = "valid",
 ):
     save_dir = Path(save_dir)

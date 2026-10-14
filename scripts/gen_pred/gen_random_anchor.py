@@ -59,11 +59,11 @@ def main(
     # Legacy parameters for backward compatibility
     duration: float = 10,
     sample_rate: int = 32000,
-    seed: Optional[int] = None,
+    seed: int = 42,
     **kw_args,
 ):
     if seed is not None:
-        seed_everything(seed)
+        seed_everything(seed, workers=True)
     dataset_dir = os.path.join(data_base_dir, "slakh2100", split)
 
     dataset_dir = Path(dataset_dir)
@@ -218,7 +218,7 @@ if __name__ == "__main__":
         "--duration", type=float, default=10, help="Duration in seconds"
     )
     parser.add_argument(
-        "--seed", type=int, default=None, help="Random seed for reproducibility"
+        "--seed", type=int, default=42, help="Random seed for reproducibility"
     )
 
     args = parser.parse_args()

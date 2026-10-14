@@ -131,7 +131,7 @@ if __name__ == "__main__":
     gen_kwargs = json.loads(args.gen_kwargs)
 
     if args.seed is not None:
-        seed_everything(args.seed)
+        seed_everything(args.seed, workers=True)
 
     # Load model config, data directories.
 
@@ -177,6 +177,7 @@ if __name__ == "__main__":
             num_samples=args.num_samples,
             gen_kwargs=gen_kwargs,
             split=args.split,
+            seed=args.seed,
         )
 
     if args.audio_generation_only:

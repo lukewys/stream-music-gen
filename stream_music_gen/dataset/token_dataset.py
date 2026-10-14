@@ -351,7 +351,7 @@ def get_dataloader(
             num_rvq_layers=num_rvq_layers,
             load_audio=load_audio,
             audio_base_dir=audio_base_dir,
-            duration=10,
+            duration=duration,
             target_sample_rate=sample_rate,
             token_crop_length=max_frame_length,
             max_num_input_stems=max_num_input_stems,
@@ -527,7 +527,7 @@ def get_audio_dataloader(
             num_rvq_layers=4,  # no effect
             load_audio=load_audio,
             audio_base_dir=audio_base_dir,
-            duration=10,
+            duration=duration,
             target_sample_rate=sample_rate,
             token_crop_length=max_frame_length,
             max_num_input_stems=max_num_input_stems,

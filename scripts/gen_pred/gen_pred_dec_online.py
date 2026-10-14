@@ -225,7 +225,7 @@ def main(
     num_samples: int = -1,
     max_gen_seq_len: int = 500,
     file_id: int = 0,
-    seed: Optional[int] = None,
+    seed: int = 42,
     gen_kwargs: dict = {},
     split: str = "valid",
 ):
@@ -234,7 +234,7 @@ def main(
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
     if seed is not None:
-        seed_everything(seed)
+        seed_everything(seed, workers=True)
 
     # Load the model
     model, tokenizer, dataloaders = load_lit_model(

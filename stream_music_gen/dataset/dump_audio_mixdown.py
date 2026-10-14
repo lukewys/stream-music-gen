@@ -5,6 +5,7 @@ from pathlib import Path
 
 from audiotools import AudioSignal
 from dac import DAC
+from lightning import seed_everything
 import torch
 from tqdm import tqdm
 
@@ -96,7 +97,16 @@ def main():
         default="stream_music_gen_data/",
         help="Base directory containing audio files",
     )
+    parser.add_argument(
+        "--seed",
+        type=int,
+        default=42,
+        help="Random seed for reproducibility",
+    )
     args = parser.parse_args()
+
+    if args.seed is not None:
+        seed_everything(args.seed, workers=True)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 

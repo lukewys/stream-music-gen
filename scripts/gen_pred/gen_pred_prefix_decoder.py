@@ -182,7 +182,7 @@ def main(
     num_samples: int = -1,
     max_gen_seq_len: int = 500,
     gen_kwargs: dict = {},
-    seed: Optional[int] = None,
+    seed: int = 42,
     split: str = "valid",
 ):
     save_dir = Path(save_dir)
@@ -190,7 +190,7 @@ def main(
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
     if seed is not None:
-        seed_everything(seed)
+        seed_everything(seed, workers=True)
 
     # Load the model
     model, tokenizer, dataloaders = load_lit_model(

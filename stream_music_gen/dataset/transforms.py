@@ -171,9 +171,10 @@ class SelectStems(BaseTransform):
 
         # At least 1 input, up to all
         if self.max_num_input_stems is not None:
-            n_input = min(len(remaining_indices), self.max_num_input_stems)
+            max_n = min(len(remaining_indices), self.max_num_input_stems)
         else:
-            n_input = len(remaining_indices)
+            max_n = len(remaining_indices)
+        n_input = random.randint(1, max_n)
         input_idxs = random.sample(remaining_indices, n_input)
 
         # ------------------------------------------------------
