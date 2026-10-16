@@ -66,42 +66,52 @@ python stream_music_gen/dataset/extract_rms.py \
     --num_workers 8
 ```
 
-Use the following command to dump a dataset of sliced and paired examples with the audio mixdown and audio tokens computed in advance.
+Next, dump a dataset of sliced and paired examples with the audio mixdown and audio tokens computed in advance.
 This is to avoid the need to compute the audio mixdown on the fly during training.
+
+The dump has two steps: an *example list* fixes exactly which examples are dumped (track, target stem, input stems, and crop start), and then the listed examples are materialized.
+
+For reproducibility, we recommend using the example lists we generated for our experiments, especially for the validation and test sets, so that evaluation results are directly comparable. Download them from [LINK TBD] into `example_lists/` and check their SHA-256 hashes (`sha256sum example_lists/*.jsonl.gz`):
+
+| Split | File | Examples | SHA-256 |
+| --- | --- | --- | --- |
+| train | `slakh2100_train.jsonl.gz` | 1,000,000 | `0abd7b621e4e2a4d52552871ec2831a3eaa8a21a851e99d07185ed87118fc3eb` |
+| valid | `slakh2100_valid.jsonl.gz` | 10,000 | `c700d86fb6b87a5a45ec52648de5834700be269033800bea7e6a95e77b5136c3` |
+| test | `slakh2100_test.jsonl.gz` | 10,000 | `34a5e8bfde07259a09a5d9dae890fa4c8e04aca2b7e5cfd4472b20f801989f53` |
+
+You can also generate your own example lists. Selecting examples only needs the RMS features, so this step is fast and CPU-only:
+
+```bash
+python stream_music_gen/dataset/select_examples.py \
+    --dataset slakh2100 \
+    --split train \
+    --num_examples 1000000 \
+    --output example_lists/slakh2100_train.jsonl.gz \
+    --audio_duration 20 \
+    --data_base_dir stream_music_gen_data/causal_dac_codes_32khz \
+    --rms_base_dir stream_music_gen_data/rms_50hz \
+    --audio_base_dir stream_music_gen_data/
+
+# Same for the validation and test sets, with 10000 examples each.
+python stream_music_gen/dataset/select_examples.py --dataset slakh2100 --split valid --num_examples 10000 --output example_lists/slakh2100_valid.jsonl.gz --audio_duration 20 --data_base_dir stream_music_gen_data/causal_dac_codes_32khz --rms_base_dir stream_music_gen_data/rms_50hz --audio_base_dir stream_music_gen_data/
+python stream_music_gen/dataset/select_examples.py --dataset slakh2100 --split test --num_examples 10000 --output example_lists/slakh2100_test.jsonl.gz --audio_duration 20 --data_base_dir stream_music_gen_data/causal_dac_codes_32khz --rms_base_dir stream_music_gen_data/rms_50hz --audio_base_dir stream_music_gen_data/
+```
+
+Then, materialize the example lists (mix the input stems and extract the DAC tokens; `--save_audio` also stores the audio, which is needed for evaluation):
 
 ```bash
 python stream_music_gen/dataset/dump_audio_mixdown.py \
-    --dataset slakh2100 \
-    --split train \
-    --max_examples 1000000 \
+    --example_list example_lists/slakh2100_train.jsonl.gz \
     --output_dir stream_music_gen_data/precompute_audio_mixdown_20s \
-    --audio_duration 20 \
     --data_base_dir stream_music_gen_data/causal_dac_codes_32khz \
-    --rms_base_dir stream_music_gen_data/rms_50hz \
     --audio_base_dir stream_music_gen_data/
 
-python stream_music_gen/dataset/dump_audio_mixdown.py \
-    --dataset slakh2100 \
-    --split valid \
-    --max_examples 10000 \
-    --output_dir stream_music_gen_data/precompute_audio_mixdown_20s \
-    --audio_duration 20 \
-    --save_audio \
-    --data_base_dir stream_music_gen_data/causal_dac_codes_32khz \
-    --rms_base_dir stream_music_gen_data/rms_50hz \
-    --audio_base_dir stream_music_gen_data/
-
-python stream_music_gen/dataset/dump_audio_mixdown.py \
-    --dataset slakh2100 \
-    --split test \
-    --max_examples 10000 \
-    --output_dir stream_music_gen_data/precompute_audio_mixdown_20s \
-    --audio_duration 20 \
-    --save_audio \
-    --data_base_dir stream_music_gen_data/causal_dac_codes_32khz \
-    --rms_base_dir stream_music_gen_data/rms_50hz \
-    --audio_base_dir stream_music_gen_data/
+python stream_music_gen/dataset/dump_audio_mixdown.py --example_list example_lists/slakh2100_valid.jsonl.gz --save_audio --output_dir stream_music_gen_data/precompute_audio_mixdown_20s --data_base_dir stream_music_gen_data/causal_dac_codes_32khz --audio_base_dir stream_music_gen_data/
+python stream_music_gen/dataset/dump_audio_mixdown.py --example_list example_lists/slakh2100_test.jsonl.gz --save_audio --output_dir stream_music_gen_data/precompute_audio_mixdown_20s --data_base_dir stream_music_gen_data/causal_dac_codes_32khz --audio_base_dir stream_music_gen_data/
 ```
+
+Dumping from an example list involves no randomness, so the same example list always yields the same dataset. The dump can be resumed by re-running the same command, and split across processes or GPUs with `--num_shards N --shard_id i`.
+Without `--example_list`, `dump_audio_mixdown.py` samples examples on the fly instead (`--dataset`, `--split`, `--max_examples`, `--seed`).
 
 **Notes:**
 1. We support the following datasets: `slakh2100`, `cocochorales`, `moisesdb`, and `musdb`. You need to manually download the `musdb` dataset whereas the codebase will automatically download the other datasets.

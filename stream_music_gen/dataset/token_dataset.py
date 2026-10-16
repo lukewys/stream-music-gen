@@ -465,6 +465,58 @@ def get_dataloader(
     return dataloader
 
 
+def get_audio_select_stems(
+    audio_base_dir: str,
+    duration: int,
+    target_sample_rate: int = 32000,
+    max_num_input_stems: Optional[int] = None,
+    filter_stem_by_rms: bool = True,
+    copy_target_to_input: bool = False,
+) -> SelectStems:
+    """SelectStems used to sample (input mixture, target stem) audio pairs.
+
+    Shared by `get_audio_dataloader` (on-the-fly sampling),
+    `select_examples.py` (selection only) and `ExampleListAudioDataset` (audio
+    loading only), so all of them use exactly the same selection rules and
+    audio processing.
+    """
+    frame_rate_hz = 50  # for rms
+    return SelectStems(
+        ignore_instrument_ids=[
+            inst_name_to_inst_class_id("unknown"),
+            inst_name_to_inst_class_id("vocal"),
+        ],
+        num_rvq_layers=4,  # no effect
+        load_audio=True,
+        audio_base_dir=audio_base_dir,
+        duration=duration,
+        target_sample_rate=target_sample_rate,
+        token_crop_length=duration * frame_rate_hz,
+        max_num_input_stems=max_num_input_stems,
+        rms_threshold=-60.0,
+        num_retries=16,
+        min_overlap_portion=0.5,
+        filter_stem_by_rms=filter_stem_by_rms,
+        rms_token_hz=RMS_FRAME_RATE_HZ,
+        copy_target_to_input=copy_target_to_input,
+        load_audio_tokens=False,
+    )
+
+
+def get_audio_pad_transforms(duration: int, sample_rate: int):
+    """Pad input/target audio to exactly `duration` seconds."""
+    return [
+        PadTokens(
+            key="target_audio",
+            input_length=duration * sample_rate,
+        ),
+        PadTokens(
+            key="input_audio",
+            input_length=duration * sample_rate,
+        ),
+    ]
+
+
 def get_audio_dataloader(
     dataset_names: List[str] = ["slakh2100"],
     data_base_dir: str = "stream_music_gen_data/causal_dac_codes_32khz",
@@ -508,51 +560,21 @@ def get_audio_dataloader(
     # To compatible with argbind
     group_by_track = group_by_track.lower() == "true"
     filter_stem_by_rms = filter_stem_by_rms.lower() == "true"
-    load_audio = True
-
-    # Support multi-layered dataset, where items are [num_rvq_layers, T] (not flattened)
-    frame_rate_hz = 50  # for rms
-    max_frame_length = duration * frame_rate_hz
-    sample_rate = target_sample_rate
 
     transforms = [
         LoadRMS(
             rms_base_dir=rms_base_dir,
         ),
-        SelectStems(
-            ignore_instrument_ids=[
-                inst_name_to_inst_class_id("unknown"),
-                inst_name_to_inst_class_id("vocal"),
-            ],
-            num_rvq_layers=4,  # no effect
-            load_audio=load_audio,
+        get_audio_select_stems(
             audio_base_dir=audio_base_dir,
             duration=duration,
-            target_sample_rate=sample_rate,
-            token_crop_length=max_frame_length,
+            target_sample_rate=target_sample_rate,
             max_num_input_stems=max_num_input_stems,
-            rms_threshold=-60.0,
-            num_retries=16,
-            min_overlap_portion=0.5,
             filter_stem_by_rms=filter_stem_by_rms,
-            rms_token_hz=RMS_FRAME_RATE_HZ,
             copy_target_to_input=copy_target_to_input,
-            load_audio_tokens=False,
         ),
+        *get_audio_pad_transforms(duration, target_sample_rate),
     ]
-
-    transforms.extend(
-        [
-            PadTokens(
-                key="target_audio",
-                input_length=duration * sample_rate,
-            ),
-            PadTokens(
-                key="input_audio",
-                input_length=duration * sample_rate,
-            ),
-        ]
-    )
 
     dataset = TokenDataset(
         base_dir=data_base_dir,
@@ -572,6 +594,94 @@ def get_audio_dataloader(
         persistent_workers=True if num_workers > 0 else False,
     )
     return dataloader
+
+
+class ExampleListAudioDataset(Dataset):
+    """Materialize the (input mixture, target stem) pairs of an example list.
+
+    Each example fixes the track, target stem, ordered input stems and crop
+    start, so no randomness is involved: the same example list always yields
+    the same audio. See `select_examples.py` for the format.
+    """
+
+    def __init__(
+        self,
+        examples: List[dict],
+        stems: List[dict],
+        data_base_dir: str,
+        audio_base_dir: str,
+        duration: int,
+        target_sample_rate: int = 32000,
+    ):
+        self.examples = examples
+        self.stems = stems
+        self.data_base_dir = Path(data_base_dir)
+        self.select_stems = get_audio_select_stems(
+            audio_base_dir=audio_base_dir,
+            duration=duration,
+            target_sample_rate=target_sample_rate,
+        )
+        self.pad = ComposeTransform(
+            get_audio_pad_transforms(duration, target_sample_rate)
+        )
+
+    def __len__(self):
+        return len(self.examples)
+
+    def __getitem__(self, idx):
+        example = self.examples[idx]
+        dataset_base_dir = self.data_base_dir / example["dataset"]
+        # Target first, then the input stems in their sampled order (the
+        # mixdown is a mean, so the order matters for bit-exactness).
+        stems = [
+            self.stems[stem_id]
+            for stem_id in [example["target"]] + example["inputs"]
+        ]
+        item = {
+            "base_dir": self.data_base_dir,
+            "instrument_class_id": [s["inst_id"] for s in stems],
+            "audio_token_path": [
+                str(dataset_base_dir / s["token_path"]) for s in stems
+            ],
+            "audio_path": [s["audio_path"] for s in stems],
+        }
+        output_item = self.select_stems.load_stems(
+            item,
+            input_idxs=list(range(1, len(stems))),
+            target_idx=0,
+            start=example["start_frame"],
+        )
+        output_item = self.pad(output_item)
+        output_item["example_idx"] = example["idx"]
+        return output_item
+
+
+def get_example_list_audio_dataloader(
+    examples: List[dict],
+    stems: List[dict],
+    data_base_dir: str,
+    audio_base_dir: str,
+    duration: int,
+    target_sample_rate: int = 32000,
+    batch_size: int = 8,
+    num_workers: int = 8,
+) -> torch.utils.data.DataLoader:
+    """DataLoader over the examples of an example list, in order."""
+    dataset = ExampleListAudioDataset(
+        examples=examples,
+        stems=stems,
+        data_base_dir=data_base_dir,
+        audio_base_dir=audio_base_dir,
+        duration=duration,
+        target_sample_rate=target_sample_rate,
+    )
+    return torch.utils.data.DataLoader(
+        dataset=dataset,
+        batch_size=batch_size,
+        shuffle=False,
+        num_workers=num_workers,
+        collate_fn=default_collate_fn,
+    )
 
 
 def get_precomputed_token_dataloader(

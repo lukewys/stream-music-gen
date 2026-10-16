@@ -98,6 +98,7 @@ class SelectStems(BaseTransform):
             )
         self.audio_base_dir = Path(audio_base_dir)
         self.copy_target_to_input = copy_target_to_input
+        self._resamplers = {}  # orig_sr -> T.Resample, built once per worker
         self.load_audio_tokens = load_audio_tokens
 
     def filter_instrument_ids(self, instrument_ids):
@@ -308,21 +309,26 @@ class SelectStems(BaseTransform):
                 - [channels, T_samples] otherwise
                 at `self.target_sample_rate`.
         """
-        audio, sr = torchaudio.load(audio_path)  # shape [channels, T_orig]
+        sr = torchaudio.info(str(audio_path)).sample_rate
 
-        # Crop
+        # Crop by decoding only the requested frames. For lossless formats this
+        # is bit-identical to loading the whole file and slicing it.
         start_sample = int(start * sr)
         length_sample = int(self.duration * sr)
-        audio = audio[:, start_sample : start_sample + length_sample]
+        audio, sr = torchaudio.load(
+            audio_path, frame_offset=start_sample, num_frames=length_sample
+        )  # shape [channels, T_crop]
         return audio, sr
 
     def post_process_audio(self, audio, sr):
         # Resample if needed
         if sr != self.target_sample_rate:
-            resample = T.Resample(
-                orig_freq=sr, new_freq=self.target_sample_rate
-            )
-            audio = resample(audio)  # shape [channels, T_resampled]
+            if sr not in self._resamplers:
+                self._resamplers[sr] = T.Resample(
+                    orig_freq=sr, new_freq=self.target_sample_rate
+                )
+            # shape [channels, T_resampled]
+            audio = self._resamplers[sr](audio)
 
         # merge channels to mono by taking the mean across channels
         if audio.size(0) > 1:
@@ -368,6 +374,7 @@ class SelectStems(BaseTransform):
 
         output_item = {
             "base_dir": str(item["base_dir"]),
+            "crop_start_frame": start,
         }
 
         # -- Instrument IDs
