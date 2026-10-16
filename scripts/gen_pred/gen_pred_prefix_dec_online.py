@@ -205,8 +205,8 @@ def main(
     tokenizer.to(device)
     sample_rate = tokenizer.sample_rate
 
-    duration = model.config["max_duration"] - max(
-        0, model.future_visibility // tokenizer.frame_rate
+    duration = model.config["max_duration"] - min(
+        0, -model.future_visibility // tokenizer.frame_rate
     )
 
     val_dataloader = get_precomputed_token_dataloader(

@@ -95,8 +95,8 @@ class LitDecoderOnline(BaseLightningModel):
             self.model = torch.compile(self.model)
 
         # Create dataloaders
-        duration = self.max_duration - max(
-            0, self.model.future_visibility / self.frame_rate
+        duration = self.max_duration - min(
+            0, -self.model.future_visibility / self.frame_rate
         )
         train_dataloader = get_dataloader(
             frame_rate_hz=self.frame_rate,

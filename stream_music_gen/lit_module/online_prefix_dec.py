@@ -108,7 +108,7 @@ class LitOnlinePrefixDecoderMultiOut(BaseLightningModel):
 
         # Create dataloaders
         duration = self.max_duration - min(
-            0, self.model.input_delay / self.frame_rate
+            0, -self.model.future_visibility / self.frame_rate
         )
 
         train_dataloader = get_dataloader(
