@@ -1,7 +1,8 @@
 # Additional dependencies for evaluation and analysis scripts.
+# beat_transformer pins old torch/librosa versions, so it is installed
+# separately with --no-deps (see README).
 
 frechet_audio_distance @ git+https://github.com/maswang32/frechet-audio-distance@25f82b36c7179d92ebb908609dc48c6740b406b7
 cocola @ git+https://github.com/maswang32/cocola-stem-gen.git@6ada048f604624215d2a1612447852a7fc7a45a1
-beat_transformer @ git+https://github.com/lancelotblanchard/beat-transformer-online-stem-gen.git@f9944f10ac1e3a79c117ab6f5a8f40ac7e4414e8
-madmom @ git+https://github.com/CPJKU/madmom@27f032e8947204902c675e5e341a3faf5dc86dae
-beat_this @ https://github.com/CPJKU/beat_this/archive/main.zip#sha256=f5f0760ca33e7d612520b85aded78b245b91d7d0744bab097e721aee6ad5cf94
+madmom @ git+https://github.com/CPJKU/madmom.git@27f032e8947204902c675e5e341a3faf5dc86dae
+beat_this @ git+https://github.com/CPJKU/beat_this.git@7657e9f1ab9ffbd18f10f26e24e91b3c18cfb323

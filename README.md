@@ -22,10 +22,11 @@ cd stream-music-gen
 pip install -e .
 ```
 
-Optional evaluation and analysis dependencies:
+Optional evaluation and analysis dependencies (Beat Transformer pins older `torch`/`librosa` versions, so it is installed without its dependencies):
 
 ```bash
 pip install -e ".[eval]"
+pip install --no-deps "beat_transformer @ git+https://github.com/lancelotblanchard/beat-transformer-online-stem-gen.git@f9944f10ac1e3a79c117ab6f5a8f40ac7e4414e8"
 ```
 
 To reproduce the tested local package versions, add the provided constraints
@@ -34,6 +35,7 @@ file:
 ```bash
 pip install -e . -c constraints-jamming-2026-04.txt
 pip install -e ".[eval]" -c constraints-jamming-2026-04.txt
+pip install --no-deps "beat_transformer @ git+https://github.com/lancelotblanchard/beat-transformer-online-stem-gen.git@f9944f10ac1e3a79c117ab6f5a8f40ac7e4414e8"
 ```
 
 The dependency files intentionally use compatible version ranges so the
@@ -150,7 +152,7 @@ You need to download the pretrained models for evaluation.
 We use the [COCOLA](https://github.com/gladia-research-group/cocola) model for accompaniment quality evaluation.
 Download the COCOLA checkpoint from [this link](https://drive.google.com/file/d/1S-_OvnDwNFLNZD5BmI1Ouck_prutRVWZ/view) and place it in the `cocola_models/` directory.
 
-For beat alignment evaluation, we use [Beat This](https://github.com/CPJKU/beat_this), which will automatically download the model weights. We also support [Beat Transformer](https://github.com/zhaojw1998/Beat-Transformer) for beat alignment evaluation. If you use Beat Transformer, download the checkpoint from [this link](https://github.com/zhaojw1998/Beat-Transformer/blob/main/checkpoint/fold_4_trf_param.pt) and place it in the `beat_transformer_models/` directory.
+For beat alignment evaluation, we use [Beat This](https://github.com/CPJKU/beat_this), which will automatically download the model weights. We also support [Beat Transformer](https://github.com/zhaojw1998/Beat-Transformer) for beat alignment evaluation. The evaluation code loads the Beat Transformer checkpoint even when Beat This is used, so download the checkpoint from [this link](https://github.com/zhaojw1998/Beat-Transformer/blob/main/checkpoint/fold_4_trf_param.pt) and place it in the `beat_transformer_models/` directory.
 
 ### Running the Evaluation Script
 

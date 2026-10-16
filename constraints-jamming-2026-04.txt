@@ -6,7 +6,7 @@
 #   pip install -e ".[eval]" -c constraints-jamming-2026-04.txt
 
 argbind==0.3.9
-beat-this @ https://github.com/CPJKU/beat_this/archive/main.zip#sha256=f5f0760ca33e7d612520b85aded78b245b91d7d0744bab097e721aee6ad5cf94
+beat-this @ git+https://github.com/CPJKU/beat_this.git@7657e9f1ab9ffbd18f10f26e24e91b3c18cfb323
 beat_transformer @ git+https://github.com/lancelotblanchard/beat-transformer-online-stem-gen.git@f9944f10ac1e3a79c117ab6f5a8f40ac7e4414e8
 cocola @ git+https://github.com/maswang32/cocola-stem-gen.git@6ada048f604624215d2a1612447852a7fc7a45a1
 descript-audio-codec @ git+https://github.com/slSeanWU/descript-audio-codec.git@56d0ea29d55a9b74964c5b11f3ba1d11b53f193e
@@ -15,7 +15,7 @@ frechet_audio_distance @ git+https://github.com/maswang32/frechet-audio-distance
 ipython==8.25.0
 librosa==0.10.2.post1
 lightning==2.4.0
-madmom @ git+https://github.com/CPJKU/madmom@27f032e8947204902c675e5e341a3faf5dc86dae
+madmom @ git+https://github.com/CPJKU/madmom.git@27f032e8947204902c675e5e341a3faf5dc86dae
 matplotlib==3.9.2
 numpy==1.26.4
 pandas==2.2.3
