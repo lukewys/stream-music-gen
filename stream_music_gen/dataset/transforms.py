@@ -315,9 +315,15 @@ class SelectStems(BaseTransform):
         # is bit-identical to loading the whole file and slicing it.
         start_sample = int(start * sr)
         length_sample = int(self.duration * sr)
-        audio, sr = torchaudio.load(
-            audio_path, frame_offset=start_sample, num_frames=length_sample
-        )  # shape [channels, T_crop]
+        try:
+            audio, sr = torchaudio.load(
+                audio_path, frame_offset=start_sample, num_frames=length_sample
+            )  # shape [channels, T_crop]
+        except Exception:
+            # libsndfile occasionally fails to seek to a FLAC position that a
+            # full decode reads fine; fall back to decoding the whole file.
+            audio, sr = torchaudio.load(audio_path)
+            audio = audio[:, start_sample : start_sample + length_sample]
         return audio, sr
 
     def post_process_audio(self, audio, sr):
