@@ -1448,12 +1448,12 @@ class OnlinePrefixDecoderTransformerMultiOut(DecoderTransformerMultiOut):
 
         # Here we assume the max duration of generation
         # is divisible by chunk_length.
-        if T % self.chunk_length != 0:
-            raise ValueError(
-                f"Sequence length T={T} must be divisible by chunk_length={self.chunk_length}."
-            )
-
         max_duration_gen = T - max(0, self.future_visibility)
+        if max_duration_gen % self.chunk_length != 0:
+            raise ValueError(
+                f"Generation length {max_duration_gen} (T={T} minus future visibility) "
+                f"must be divisible by chunk_length={self.chunk_length}."
+            )
         possible_context_lengths = np.arange(
             0, max_duration_gen, self.chunk_length
         )
