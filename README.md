@@ -73,7 +73,7 @@ This is to avoid the need to compute the audio mixdown on the fly during trainin
 
 The dump has two steps: an *example list* fixes exactly which examples are dumped (track, target stem, input stems, and crop start), and then the listed examples are materialized.
 
-For reproducibility, we recommend using the example lists we generated for our experiments, especially for the validation and test sets, so that evaluation results are directly comparable. Download them from [LINK TBD] into `example_lists/` and check their SHA-256 hashes (`sha256sum example_lists/*.jsonl.gz`):
+For reproducibility, we recommend using the example lists we generated for our experiments, especially for the validation and test sets, so that evaluation results are directly comparable. They are included in this repository under [`example_lists/`](example_lists/); you can check their SHA-256 hashes with `cd example_lists && sha256sum -c SHA256SUMS` or against the table below:
 
 | Split | File | Examples | SHA-256 |
 | --- | --- | --- | --- |
