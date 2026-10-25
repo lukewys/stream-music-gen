@@ -171,7 +171,7 @@ The `--skip_audio_generation` flag skips the audio generation step and automatic
 ### Example Command
 
 ```bash
-python scripts/gen_pred/gen_and_evaluate.py dec_online /path/to/dec_online_future_visibility_100.ckpt --num_samples 1024
+python scripts/gen_pred/gen_and_evaluate.py dec_online /path/to/dec_online_future_visibility_50/step=100000.ckpt --num_samples 1024
 ```
 
 ### Recommendations
@@ -180,7 +180,7 @@ Use 1024 for the number of samples to compute FAD/COCOLA.
 
 ## Pretrained Checkpoints
 
-You can find pretrained checkpoints in here: https://huggingface.co/lukewys/stream_music_gen/tree/main.
+You can find pretrained checkpoints in here: https://huggingface.co/lukewys/stream_music_gen/tree/main. Each model folder contains the checkpoint and its `args.yml`. The folders at the top level hold the checkpoints of the main results in the paper. The `full_mixture_setting/` folder holds the checkpoints of the same models trained under the earlier full-mixture data setting (paper appendix), which were used in the listening study.
 
 ## A Note on argbind
 
