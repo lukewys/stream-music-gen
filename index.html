@@ -118,12 +118,6 @@
                   </a>
                 </span>
                 <span class="link-block">
-                  <a href="files/streamgen_appendix_1021.pdf" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon"><i class="fas fa-file-pdf"></i></span>
-                    <span>Appendix</span>
-                  </a>
-                </span>
-                <span class="link-block">
                   <a href="https://github.com/lukewys/stream-music-gen"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon"><i class="fab fa-github"></i></span>
@@ -138,11 +132,21 @@
     </div>
   </section>
 
+  <section class="section" style="padding-bottom: 0;">
+    <div class="container wide-container">
+      <div class="notification is-warning is-light">
+        <strong>Update:</strong> an earlier version of our data pipeline always used the complementary submix (all other stems)
+        as the input instead of a random subset of them. The examples below are from models retrained with the fix;
+        the original examples, with more details, are <a href="original_examples.html">here</a>.
+      </div>
+    </div>
+  </section>
+
   <section class="section">
     <div class="container wide-container">
       <div class="content">
         <p>
-          Each example row shares the same vocal input used in the listening study. For every system we provide the
+          Each example row shares the same input. For every system we provide the
           rendered mix (input plus accompaniment) and the standalone generated accompaniment.
         </p>
       </div>
@@ -154,7 +158,7 @@
                 <div class="example-header">
                   <span class="example-title">Example 1 - Bass</span>
                   <span class="example-track-label">Input</span>
-                  <audio controls preload="auto" src="1021_website_demo_audio_full/00452/input_audio.wav"></audio>
+                  <audio controls preload="auto" src="website_demo_audio_rerun/00575/input_audio.wav"></audio>
                 </div>
                 <div class="example-row">
                   <div class="example-cell">
@@ -162,12 +166,12 @@
                     <div class="audio-group">
                       <span class="audio-label">Mix</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00452/ground_truth/mix.wav"></audio>
+                        src="website_demo_audio_rerun/00575/ground_truth/mix.wav"></audio>
                     </div>
                     <div class="audio-group">
                       <span class="audio-label">Output</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00452/ground_truth/pred.wav"></audio>
+                        src="website_demo_audio_rerun/00575/ground_truth/pred.wav"></audio>
                     </div>
                   </div>
                   <div class="example-cell">
@@ -175,12 +179,12 @@
                     <div class="audio-group">
                       <span class="audio-label">Mix</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00452/stemgen_large_4_rvq/mix.wav"></audio>
+                        src="website_demo_audio_rerun/00575/stemgen_large_4_rvq/mix.wav"></audio>
                     </div>
                     <div class="audio-group">
                       <span class="audio-label">Output</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00452/stemgen_large_4_rvq/pred.wav"></audio>
+                        src="website_demo_audio_rerun/00575/stemgen_large_4_rvq/pred.wav"></audio>
                     </div>
                   </div>
                   <div class="example-cell">
@@ -188,12 +192,12 @@
                     <div class="audio-group">
                       <span class="audio-label">Mix</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00452/prefix_decoder_base/mix.wav"></audio>
+                        src="website_demo_audio_rerun/00575/prefix_decoder_base/mix.wav"></audio>
                     </div>
                     <div class="audio-group">
                       <span class="audio-label">Output</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00452/prefix_decoder_base/pred.wav"></audio>
+                        src="website_demo_audio_rerun/00575/prefix_decoder_base/pred.wav"></audio>
                     </div>
                   </div>
                   <div class="example-cell">
@@ -201,12 +205,12 @@
                     <div class="audio-group">
                       <span class="audio-label">Mix</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00452/dec_online_delay_50_add_changed_emb/mix.wav"></audio>
+                        src="website_demo_audio_rerun/00575/dec_online_delay_50_add_changed_emb/mix.wav"></audio>
                     </div>
                     <div class="audio-group">
                       <span class="audio-label">Output</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00452/dec_online_delay_50_add_changed_emb/pred.wav"></audio>
+                        src="website_demo_audio_rerun/00575/dec_online_delay_50_add_changed_emb/pred.wav"></audio>
                     </div>
                   </div>
                   <div class="example-cell">
@@ -214,12 +218,12 @@
                     <div class="audio-group">
                       <span class="audio-label">Mix</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00452/dec_online_delay_0_add_changed_emb/mix.wav"></audio>
+                        src="website_demo_audio_rerun/00575/dec_online_delay_0_add_changed_emb/mix.wav"></audio>
                     </div>
                     <div class="audio-group">
                       <span class="audio-label">Output</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00452/dec_online_delay_0_add_changed_emb/pred.wav"></audio>
+                        src="website_demo_audio_rerun/00575/dec_online_delay_0_add_changed_emb/pred.wav"></audio>
                     </div>
                   </div>
                   <div class="example-cell">
@@ -227,12 +231,12 @@
                     <div class="audio-group">
                       <span class="audio-label">Mix</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00452/dec_online_context_50_add_changed_emb/mix.wav"></audio>
+                        src="website_demo_audio_rerun/00575/dec_online_context_50_add_changed_emb/mix.wav"></audio>
                     </div>
                     <div class="audio-group">
                       <span class="audio-label">Output</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00452/dec_online_context_50_add_changed_emb/pred.wav"></audio>
+                        src="website_demo_audio_rerun/00575/dec_online_context_50_add_changed_emb/pred.wav"></audio>
                     </div>
                   </div>
                   <div class="example-cell">
@@ -240,12 +244,12 @@
                     <div class="audio-group">
                       <span class="audio-label">Mix</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00452/random_anchor/mix.wav"></audio>
+                        src="website_demo_audio_rerun/00575/random_anchor/mix.wav"></audio>
                     </div>
                     <div class="audio-group">
                       <span class="audio-label">Output</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00452/random_anchor/pred.wav"></audio>
+                        src="website_demo_audio_rerun/00575/random_anchor/pred.wav"></audio>
                     </div>
                   </div>
                 </div>
@@ -256,7 +260,7 @@
                 <div class="example-header">
                   <span class="example-title">Example 2 - Piano</span>
                   <span class="example-track-label">Input</span>
-                  <audio controls preload="auto" src="1021_website_demo_audio_full/00464/input_audio.wav"></audio>
+                  <audio controls preload="auto" src="website_demo_audio_rerun/00420/input_audio.wav"></audio>
                 </div>
                 <div class="example-row">
                   <div class="example-cell">
@@ -264,12 +268,12 @@
                     <div class="audio-group">
                       <span class="audio-label">Mix</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00464/ground_truth/mix.wav"></audio>
+                        src="website_demo_audio_rerun/00420/ground_truth/mix.wav"></audio>
                     </div>
                     <div class="audio-group">
                       <span class="audio-label">Output</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00464/ground_truth/pred.wav"></audio>
+                        src="website_demo_audio_rerun/00420/ground_truth/pred.wav"></audio>
                     </div>
                   </div>
                   <div class="example-cell">
@@ -277,12 +281,12 @@
                     <div class="audio-group">
                       <span class="audio-label">Mix</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00464/stemgen_large_4_rvq/mix.wav"></audio>
+                        src="website_demo_audio_rerun/00420/stemgen_large_4_rvq/mix.wav"></audio>
                     </div>
                     <div class="audio-group">
                       <span class="audio-label">Output</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00464/stemgen_large_4_rvq/pred.wav"></audio>
+                        src="website_demo_audio_rerun/00420/stemgen_large_4_rvq/pred.wav"></audio>
                     </div>
                   </div>
                   <div class="example-cell">
@@ -290,12 +294,12 @@
                     <div class="audio-group">
                       <span class="audio-label">Mix</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00464/prefix_decoder_base/mix.wav"></audio>
+                        src="website_demo_audio_rerun/00420/prefix_decoder_base/mix.wav"></audio>
                     </div>
                     <div class="audio-group">
                       <span class="audio-label">Output</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00464/prefix_decoder_base/pred.wav"></audio>
+                        src="website_demo_audio_rerun/00420/prefix_decoder_base/pred.wav"></audio>
                     </div>
                   </div>
                   <div class="example-cell">
@@ -303,12 +307,12 @@
                     <div class="audio-group">
                       <span class="audio-label">Mix</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00464/dec_online_delay_50_add_changed_emb/mix.wav"></audio>
+                        src="website_demo_audio_rerun/00420/dec_online_delay_50_add_changed_emb/mix.wav"></audio>
                     </div>
                     <div class="audio-group">
                       <span class="audio-label">Output</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00464/dec_online_delay_50_add_changed_emb/pred.wav"></audio>
+                        src="website_demo_audio_rerun/00420/dec_online_delay_50_add_changed_emb/pred.wav"></audio>
                     </div>
                   </div>
                   <div class="example-cell">
@@ -316,12 +320,12 @@
                     <div class="audio-group">
                       <span class="audio-label">Mix</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00464/dec_online_delay_0_add_changed_emb/mix.wav"></audio>
+                        src="website_demo_audio_rerun/00420/dec_online_delay_0_add_changed_emb/mix.wav"></audio>
                     </div>
                     <div class="audio-group">
                       <span class="audio-label">Output</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00464/dec_online_delay_0_add_changed_emb/pred.wav"></audio>
+                        src="website_demo_audio_rerun/00420/dec_online_delay_0_add_changed_emb/pred.wav"></audio>
                     </div>
                   </div>
                   <div class="example-cell">
@@ -329,12 +333,12 @@
                     <div class="audio-group">
                       <span class="audio-label">Mix</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00464/dec_online_context_50_add_changed_emb/mix.wav"></audio>
+                        src="website_demo_audio_rerun/00420/dec_online_context_50_add_changed_emb/mix.wav"></audio>
                     </div>
                     <div class="audio-group">
                       <span class="audio-label">Output</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00464/dec_online_context_50_add_changed_emb/pred.wav"></audio>
+                        src="website_demo_audio_rerun/00420/dec_online_context_50_add_changed_emb/pred.wav"></audio>
                     </div>
                   </div>
                   <div class="example-cell">
@@ -342,12 +346,12 @@
                     <div class="audio-group">
                       <span class="audio-label">Mix</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00464/random_anchor/mix.wav"></audio>
+                        src="website_demo_audio_rerun/00420/random_anchor/mix.wav"></audio>
                     </div>
                     <div class="audio-group">
                       <span class="audio-label">Output</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00464/random_anchor/pred.wav"></audio>
+                        src="website_demo_audio_rerun/00420/random_anchor/pred.wav"></audio>
                     </div>
                   </div>
                 </div>
@@ -358,7 +362,7 @@
                 <div class="example-header">
                   <span class="example-title">Example 3 - Piano</span>
                   <span class="example-track-label">Input</span>
-                  <audio controls preload="auto" src="1021_website_demo_audio_full/00269/input_audio.wav"></audio>
+                  <audio controls preload="auto" src="website_demo_audio_rerun/08650/input_audio.wav"></audio>
                 </div>
                 <div class="example-row">
                   <div class="example-cell">
@@ -366,12 +370,12 @@
                     <div class="audio-group">
                       <span class="audio-label">Mix</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00269/ground_truth/mix.wav"></audio>
+                        src="website_demo_audio_rerun/08650/ground_truth/mix.wav"></audio>
                     </div>
                     <div class="audio-group">
                       <span class="audio-label">Output</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00269/ground_truth/pred.wav"></audio>
+                        src="website_demo_audio_rerun/08650/ground_truth/pred.wav"></audio>
                     </div>
                   </div>
                   <div class="example-cell">
@@ -379,12 +383,12 @@
                     <div class="audio-group">
                       <span class="audio-label">Mix</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00269/stemgen_large_4_rvq/mix.wav"></audio>
+                        src="website_demo_audio_rerun/08650/stemgen_large_4_rvq/mix.wav"></audio>
                     </div>
                     <div class="audio-group">
                       <span class="audio-label">Output</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00269/stemgen_large_4_rvq/pred.wav"></audio>
+                        src="website_demo_audio_rerun/08650/stemgen_large_4_rvq/pred.wav"></audio>
                     </div>
                   </div>
                   <div class="example-cell">
@@ -392,12 +396,12 @@
                     <div class="audio-group">
                       <span class="audio-label">Mix</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00269/prefix_decoder_base/mix.wav"></audio>
+                        src="website_demo_audio_rerun/08650/prefix_decoder_base/mix.wav"></audio>
                     </div>
                     <div class="audio-group">
                       <span class="audio-label">Output</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00269/prefix_decoder_base/pred.wav"></audio>
+                        src="website_demo_audio_rerun/08650/prefix_decoder_base/pred.wav"></audio>
                     </div>
                   </div>
                   <div class="example-cell">
@@ -405,12 +409,12 @@
                     <div class="audio-group">
                       <span class="audio-label">Mix</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00269/dec_online_delay_50_add_changed_emb/mix.wav"></audio>
+                        src="website_demo_audio_rerun/08650/dec_online_delay_50_add_changed_emb/mix.wav"></audio>
                     </div>
                     <div class="audio-group">
                       <span class="audio-label">Output</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00269/dec_online_delay_50_add_changed_emb/pred.wav"></audio>
+                        src="website_demo_audio_rerun/08650/dec_online_delay_50_add_changed_emb/pred.wav"></audio>
                     </div>
                   </div>
                   <div class="example-cell">
@@ -418,12 +422,12 @@
                     <div class="audio-group">
                       <span class="audio-label">Mix</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00269/dec_online_delay_0_add_changed_emb/mix.wav"></audio>
+                        src="website_demo_audio_rerun/08650/dec_online_delay_0_add_changed_emb/mix.wav"></audio>
                     </div>
                     <div class="audio-group">
                       <span class="audio-label">Output</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00269/dec_online_delay_0_add_changed_emb/pred.wav"></audio>
+                        src="website_demo_audio_rerun/08650/dec_online_delay_0_add_changed_emb/pred.wav"></audio>
                     </div>
                   </div>
                   <div class="example-cell">
@@ -431,12 +435,12 @@
                     <div class="audio-group">
                       <span class="audio-label">Mix</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00269/dec_online_context_50_add_changed_emb/mix.wav"></audio>
+                        src="website_demo_audio_rerun/08650/dec_online_context_50_add_changed_emb/mix.wav"></audio>
                     </div>
                     <div class="audio-group">
                       <span class="audio-label">Output</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00269/dec_online_context_50_add_changed_emb/pred.wav"></audio>
+                        src="website_demo_audio_rerun/08650/dec_online_context_50_add_changed_emb/pred.wav"></audio>
                     </div>
                   </div>
                   <div class="example-cell">
@@ -444,12 +448,12 @@
                     <div class="audio-group">
                       <span class="audio-label">Mix</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00269/random_anchor/mix.wav"></audio>
+                        src="website_demo_audio_rerun/08650/random_anchor/mix.wav"></audio>
                     </div>
                     <div class="audio-group">
                       <span class="audio-label">Output</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00269/random_anchor/pred.wav"></audio>
+                        src="website_demo_audio_rerun/08650/random_anchor/pred.wav"></audio>
                     </div>
                   </div>
                 </div>
@@ -460,7 +464,7 @@
                 <div class="example-header">
                   <span class="example-title">Example 4 - Guitar</span>
                   <span class="example-track-label">Input</span>
-                  <audio controls preload="auto" src="1021_website_demo_audio_full/00453/input_audio.wav"></audio>
+                  <audio controls preload="auto" src="website_demo_audio_rerun/00005/input_audio.wav"></audio>
                 </div>
                 <div class="example-row">
                   <div class="example-cell">
@@ -468,12 +472,12 @@
                     <div class="audio-group">
                       <span class="audio-label">Mix</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00453/ground_truth/mix.wav"></audio>
+                        src="website_demo_audio_rerun/00005/ground_truth/mix.wav"></audio>
                     </div>
                     <div class="audio-group">
                       <span class="audio-label">Output</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00453/ground_truth/pred.wav"></audio>
+                        src="website_demo_audio_rerun/00005/ground_truth/pred.wav"></audio>
                     </div>
                   </div>
                   <div class="example-cell">
@@ -481,12 +485,12 @@
                     <div class="audio-group">
                       <span class="audio-label">Mix</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00453/stemgen_large_4_rvq/mix.wav"></audio>
+                        src="website_demo_audio_rerun/00005/stemgen_large_4_rvq/mix.wav"></audio>
                     </div>
                     <div class="audio-group">
                       <span class="audio-label">Output</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00453/stemgen_large_4_rvq/pred.wav"></audio>
+                        src="website_demo_audio_rerun/00005/stemgen_large_4_rvq/pred.wav"></audio>
                     </div>
                   </div>
                   <div class="example-cell">
@@ -494,12 +498,12 @@
                     <div class="audio-group">
                       <span class="audio-label">Mix</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00453/prefix_decoder_base/mix.wav"></audio>
+                        src="website_demo_audio_rerun/00005/prefix_decoder_base/mix.wav"></audio>
                     </div>
                     <div class="audio-group">
                       <span class="audio-label">Output</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00453/prefix_decoder_base/pred.wav"></audio>
+                        src="website_demo_audio_rerun/00005/prefix_decoder_base/pred.wav"></audio>
                     </div>
                   </div>
                   <div class="example-cell">
@@ -507,12 +511,12 @@
                     <div class="audio-group">
                       <span class="audio-label">Mix</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00453/dec_online_delay_50_add_changed_emb/mix.wav"></audio>
+                        src="website_demo_audio_rerun/00005/dec_online_delay_50_add_changed_emb/mix.wav"></audio>
                     </div>
                     <div class="audio-group">
                       <span class="audio-label">Output</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00453/dec_online_delay_50_add_changed_emb/pred.wav"></audio>
+                        src="website_demo_audio_rerun/00005/dec_online_delay_50_add_changed_emb/pred.wav"></audio>
                     </div>
                   </div>
                   <div class="example-cell">
@@ -520,12 +524,12 @@
                     <div class="audio-group">
                       <span class="audio-label">Mix</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00453/dec_online_delay_0_add_changed_emb/mix.wav"></audio>
+                        src="website_demo_audio_rerun/00005/dec_online_delay_0_add_changed_emb/mix.wav"></audio>
                     </div>
                     <div class="audio-group">
                       <span class="audio-label">Output</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00453/dec_online_delay_0_add_changed_emb/pred.wav"></audio>
+                        src="website_demo_audio_rerun/00005/dec_online_delay_0_add_changed_emb/pred.wav"></audio>
                     </div>
                   </div>
                   <div class="example-cell">
@@ -533,12 +537,12 @@
                     <div class="audio-group">
                       <span class="audio-label">Mix</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00453/dec_online_context_50_add_changed_emb/mix.wav"></audio>
+                        src="website_demo_audio_rerun/00005/dec_online_context_50_add_changed_emb/mix.wav"></audio>
                     </div>
                     <div class="audio-group">
                       <span class="audio-label">Output</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00453/dec_online_context_50_add_changed_emb/pred.wav"></audio>
+                        src="website_demo_audio_rerun/00005/dec_online_context_50_add_changed_emb/pred.wav"></audio>
                     </div>
                   </div>
                   <div class="example-cell">
@@ -546,12 +550,12 @@
                     <div class="audio-group">
                       <span class="audio-label">Mix</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00453/random_anchor/mix.wav"></audio>
+                        src="website_demo_audio_rerun/00005/random_anchor/mix.wav"></audio>
                     </div>
                     <div class="audio-group">
                       <span class="audio-label">Output</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00453/random_anchor/pred.wav"></audio>
+                        src="website_demo_audio_rerun/00005/random_anchor/pred.wav"></audio>
                     </div>
                   </div>
                 </div>
@@ -562,7 +566,7 @@
                 <div class="example-header">
                   <span class="example-title">Example 5 - Percussive</span>
                   <span class="example-track-label">Input</span>
-                  <audio controls preload="auto" src="1021_website_demo_audio_full/00267/input_audio.wav"></audio>
+                  <audio controls preload="auto" src="website_demo_audio_rerun/00091/input_audio.wav"></audio>
                 </div>
                 <div class="example-row">
                   <div class="example-cell">
@@ -570,12 +574,12 @@
                     <div class="audio-group">
                       <span class="audio-label">Mix</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00267/ground_truth/mix.wav"></audio>
+                        src="website_demo_audio_rerun/00091/ground_truth/mix.wav"></audio>
                     </div>
                     <div class="audio-group">
                       <span class="audio-label">Output</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00267/ground_truth/pred.wav"></audio>
+                        src="website_demo_audio_rerun/00091/ground_truth/pred.wav"></audio>
                     </div>
                   </div>
                   <div class="example-cell">
@@ -583,12 +587,12 @@
                     <div class="audio-group">
                       <span class="audio-label">Mix</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00267/stemgen_large_4_rvq/mix.wav"></audio>
+                        src="website_demo_audio_rerun/00091/stemgen_large_4_rvq/mix.wav"></audio>
                     </div>
                     <div class="audio-group">
                       <span class="audio-label">Output</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00267/stemgen_large_4_rvq/pred.wav"></audio>
+                        src="website_demo_audio_rerun/00091/stemgen_large_4_rvq/pred.wav"></audio>
                     </div>
                   </div>
                   <div class="example-cell">
@@ -596,12 +600,12 @@
                     <div class="audio-group">
                       <span class="audio-label">Mix</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00267/prefix_decoder_base/mix.wav"></audio>
+                        src="website_demo_audio_rerun/00091/prefix_decoder_base/mix.wav"></audio>
                     </div>
                     <div class="audio-group">
                       <span class="audio-label">Output</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00267/prefix_decoder_base/pred.wav"></audio>
+                        src="website_demo_audio_rerun/00091/prefix_decoder_base/pred.wav"></audio>
                     </div>
                   </div>
                   <div class="example-cell">
@@ -609,12 +613,12 @@
                     <div class="audio-group">
                       <span class="audio-label">Mix</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00267/dec_online_delay_50_add_changed_emb/mix.wav"></audio>
+                        src="website_demo_audio_rerun/00091/dec_online_delay_50_add_changed_emb/mix.wav"></audio>
                     </div>
                     <div class="audio-group">
                       <span class="audio-label">Output</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00267/dec_online_delay_50_add_changed_emb/pred.wav"></audio>
+                        src="website_demo_audio_rerun/00091/dec_online_delay_50_add_changed_emb/pred.wav"></audio>
                     </div>
                   </div>
                   <div class="example-cell">
@@ -622,12 +626,12 @@
                     <div class="audio-group">
                       <span class="audio-label">Mix</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00267/dec_online_delay_0_add_changed_emb/mix.wav"></audio>
+                        src="website_demo_audio_rerun/00091/dec_online_delay_0_add_changed_emb/mix.wav"></audio>
                     </div>
                     <div class="audio-group">
                       <span class="audio-label">Output</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00267/dec_online_delay_0_add_changed_emb/pred.wav"></audio>
+                        src="website_demo_audio_rerun/00091/dec_online_delay_0_add_changed_emb/pred.wav"></audio>
                     </div>
                   </div>
                   <div class="example-cell">
@@ -635,12 +639,12 @@
                     <div class="audio-group">
                       <span class="audio-label">Mix</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00267/dec_online_context_50_add_changed_emb/mix.wav"></audio>
+                        src="website_demo_audio_rerun/00091/dec_online_context_50_add_changed_emb/mix.wav"></audio>
                     </div>
                     <div class="audio-group">
                       <span class="audio-label">Output</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00267/dec_online_context_50_add_changed_emb/pred.wav"></audio>
+                        src="website_demo_audio_rerun/00091/dec_online_context_50_add_changed_emb/pred.wav"></audio>
                     </div>
                   </div>
                   <div class="example-cell">
@@ -648,12 +652,12 @@
                     <div class="audio-group">
                       <span class="audio-label">Mix</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00267/random_anchor/mix.wav"></audio>
+                        src="website_demo_audio_rerun/00091/random_anchor/mix.wav"></audio>
                     </div>
                     <div class="audio-group">
                       <span class="audio-label">Output</span>
                       <audio controls preload="auto"
-                        src="1021_website_demo_audio_full/00267/random_anchor/pred.wav"></audio>
+                        src="website_demo_audio_rerun/00091/random_anchor/pred.wav"></audio>
                     </div>
                   </div>
                 </div>
@@ -861,23 +865,23 @@
 
   <script>
     // Interactive Model Comparison Logic
-    const BASE_PATH = '1021_website_demo_audio_full';
+    const BASE_PATH = 'website_demo_audio_rerun';
 
     // ID mapping: new ID -> original ID
     const ID_MAPPING = {
-      '1': '00452',   // Bass
-      '2': '00464',   // Piano
-      '3': '00269',   // Piano
-      '4': '00453',   // Guitar
-      '5': '00267',   // Percussive
-      '6': '00009',   // Percussive
-      '7': '00014',   // Piano
-      '8': '00017',   // Guitar
-      '9': '00025',   // Ensemble
-      '10': '00031',  // Guitar
-      '11': '00035',  // Percussive
-      '12': '00049',  // Percussive
-      '13': '00064'   // Piano
+      '1': '00575',   // Bass
+      '2': '00420',   // Piano
+      '3': '08650',   // Piano
+      '4': '00005',   // Guitar
+      '5': '00091',   // Percussive
+      '6': '01009',   // Percussive
+      '7': '00155',   // Piano
+      '8': '00794',   // Guitar
+      '9': '01010',   // Ensemble
+      '10': '02041',  // Guitar
+      '11': '07751',  // Percussive
+      '12': '01297',  // Percussive
+      '13': '00704'   // Piano
     };
 
     // Instrument names for display
